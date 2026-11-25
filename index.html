@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>夏商西周·礼乐之基，青铜之魂｜4D VR 分镜与配音配乐工作台</title>
+  <style>
+    :root {
+      --color-ground: #F2ECE1;
+      --color-surface: #E7DFCE;
+      --color-ink: #231C14;
+      --color-ink-secondary: #574836;
+      --color-ink-muted: #7D6D58;
+      --color-hairline: #C7B99E;
+      --color-rule-strong: #4A3C2C;
+      --color-accent: #9E3020;
+      --color-accent-azurite: #1B4D6B;
+      --color-accent-malachite: #246751;
+      --font-display: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;
+      --font-body: "PingFang SC", "Hiragino Sans GB", "Songti SC", sans-serif;
+      --font-mono: "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    ::selection { background: var(--color-accent); color: #F2ECE1; }
+
+    body {
+      background-color: var(--color-ground);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .tabular-nums { font-variant-numeric: tabular-nums; }
+
+    .page-shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 52px 28px 72px;
+    }
+
+    .masthead {
+      border-top: 2px solid var(--color-rule-strong);
+      border-bottom: 1px solid var(--color-hairline);
+      padding: 28px 0 26px;
+      margin-bottom: 36px;
+    }
+
+    .masthead-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--color-hairline);
+      margin-bottom: 20px;
+    }
+
+    .doc-serial {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--color-ink-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .seal-mark {
+      border: 1px solid var(--color-accent);
+      color: var(--color-accent);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 9px;
+      letter-spacing: 0.14em;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 1.28;
+      margin-bottom: 12px;
+    }
+
+    .lead {
+      max-width: 66ch;
+      color: var(--color-ink-secondary);
+      font-size: 15.5px;
+    }
+
+    .portal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+
+    .portal-card {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--color-rule-strong);
+      background: var(--color-surface);
+      text-decoration: none;
+      color: inherit;
+      transition: background-color 0.14s ease;
+    }
+
+    .portal-card:hover {
+      background: #DFD5C0;
+    }
+
+    .portal-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid var(--color-rule-strong);
+      background: #1E1812;
+    }
+
+    .portal-body {
+      padding: 22px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .portal-kicker {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--color-accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .portal-card.audio .portal-kicker { color: var(--color-accent-azurite); }
+
+    .portal-title {
+      font-family: var(--font-display);
+      font-size: 23px;
+      font-weight: 600;
+      color: var(--color-ink);
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+
+    .portal-desc {
+      font-size: 14px;
+      color: var(--color-ink-secondary);
+      margin-bottom: 18px;
+      flex: 1;
+    }
+
+    .portal-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--color-hairline);
+      padding-top: 14px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--color-ink-muted);
+    }
+
+    .portal-cta {
+      font-weight: 600;
+      color: var(--color-accent);
+    }
+
+    .portal-card.audio .portal-cta { color: var(--color-accent-azurite); }
+
+    .quick-strip {
+      border-top: 1px solid var(--color-hairline);
+      border-bottom: 1px solid var(--color-hairline);
+      padding: 18px 0;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .quick-item {
+      border-left: 2px solid var(--color-rule-strong);
+      padding-left: 14px;
+    }
+
+    .quick-label { font-size: 12px; color: var(--color-ink-muted); }
+    .quick-val { font-family: var(--font-mono); font-size: 19px; font-weight: 600; color: var(--color-ink); margin-top: 2px; }
+    .quick-sub { font-size: 12px; color: var(--color-ink-secondary); margin-top: 2px; }
+
+    .footer-note {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--color-ink-muted);
+    }
+
+    @media (max-width: 860px) {
+      .portal-grid { grid-template-columns: 1fr; }
+      .quick-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="masthead">
+      <div class="masthead-top">
+        <span class="doc-serial">GUOBO-4DVR-XSZ · V3.0 PRODUCTION PORTAL · 08:00 (480s) CONTINUOUS ONE-TAKE</span>
+        <span class="seal-mark">分镜与声音双工作台</span>
+      </div>
+      <h1>《夏商西周·礼乐之基，青铜之魂》4D VR 制作审片总入口</h1>
+      <p class="lead">
+        面向导演、视效/UE5、动感座椅、配音师、作曲与 360° 空间混音团队的在线审片与进棚工作台。两套工作台已实现镜段与时间码双向精准互跳，全片锁定 480 秒零重叠基准。
+      </p>
+    </header>
+
+    <main class="portal-grid">
+      <a class="portal-card" href="./夏商西周_4D_VR分镜导演审片工作台.html">
+        <img class="portal-thumb" src="./storyboards/S06_houmuwu_ding_glow.png" alt="后母戊鼎构图分镜关键帧" />
+        <div class="portal-body">
+          <div class="portal-kicker">WORKBENCH 01 · STORYBOARD &amp; UE5 / 4D MOTION</div>
+          <div class="portal-title">4D VR 构图分镜导演审片工作台</div>
+          <p class="portal-desc">
+            包含全片 17 张考古真值校核 16:9 构图分镜、32 个工业级精细拍子（B01–B32）、VR 舒适角与三分法安全框叠加、5 处 UE5 隐藏流式加载窗、4D 动感座椅 Pitch/Yaw/风/热/震参数及商周旁白三版对比。
+          </p>
+          <div class="portal-meta tabular-nums">
+            <span>17 镜 · 32 拍 · 08:00</span>
+            <span class="portal-cta">进入分镜审片台 →</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="portal-card audio" href="./夏商西周_声音配音与配乐工作台.html">
+        <img class="portal-thumb" src="./storyboards/S17_ligui_stars_finale.png" alt="利簋铭文化星终章分镜关键帧" />
+        <div class="portal-body">
+          <div class="portal-kicker">WORKBENCH 02 · VOICEOVER, SCORE &amp; 360° SFX</div>
+          <div class="portal-title">声音配音、配乐总谱与空间音效工作台</div>
+          <p class="portal-desc">
+            专供进棚配音师、配乐师与混音师使用：26 条锁定时间码人声 Cue（全句 ≤ 4.49 字/秒防赶口）、分角色筛选与一键导出 .TXT、棚内大字提词模式、12 组考古生僻字正音红线、7 幕配器 BPM 总谱与 9 处 4D 座椅硬锁帧点。
+          </p>
+          <div class="portal-meta tabular-nums">
+            <span>26 Cues · 12 正音 · 7 幕总谱</span>
+            <span class="portal-cta">进入配音配乐工作台 →</span>
+          </div>
+        </div>
+      </a>
+    </main>
+
+    <section class="quick-strip tabular-nums" aria-label="核心规格摘要">
+      <div class="quick-item">
+        <div class="quick-label">全片锁定总长</div>
+        <div class="quick-val">08:00 (480s)</div>
+        <div class="quick-sub">一镜到底零时间码跳变</div>
+      </div>
+      <div class="quick-item">
+        <div class="quick-label">考古校准构图分镜</div>
+        <div class="quick-val">17 张 · 16:9</div>
+        <div class="quick-sub">对照原稿 20 图与国博真品</div>
+      </div>
+      <div class="quick-item">
+        <div class="quick-label">配音人声精校总条数</div>
+        <div class="quick-val">26 Cues</div>
+        <div class="quick-sub">1,139 字 · 8 声线 + 群声</div>
+      </div>
+      <div class="quick-item">
+        <div class="quick-label">双台双向直达锚点</div>
+        <div class="quick-val">S01–S17 ⇄ V01–V26</div>
+        <div class="quick-sub">支持单镜与配音/配乐一键互跳</div>
+      </div>
+    </section>
+
+    <footer class="footer-note">
+      <span>国家博物馆《古代中国》4D VR · 夏商西周篇（V3.0 审定版）</span>
+      <span>短链直达：storyboard.html ｜ audio.html</span>
+    </footer>
+  </div>
+</body>
+</html>

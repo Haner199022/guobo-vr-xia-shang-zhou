@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>夏商西周·4D VR 配音台本、配乐总谱与空间音效工作台</title>
+  <style>
+    /* Erica Aesthetic Canon — 宋画宣绢 × 朱砂石青框景 (Song Scroll & Framed Pavilion) */
+    :root {
+      --color-ground: #F2ECE1;
+      --color-surface: #E7DFCE;
+      --color-surface-deep: #D8CCB4;
+      --color-ink: #231C14;
+      --color-ink-secondary: #574836;
+      --color-ink-muted: #7D6D58;
+      --color-hairline: #C7B99E;
+      --color-rule-strong: #4A3C2C;
+      --color-accent: #9E3020;
+      --color-accent-azurite: #1B4D6B;
+      --color-accent-malachite: #246751;
+      --color-accent-gold: #A87C33;
+      --font-display: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;
+      --font-body: "PingFang SC", "Hiragino Sans GB", "Songti SC", sans-serif;
+      --font-mono: "SF Mono", Menlo, Consolas, monospace;
+      --radius-none: 0px;
+      --space-xs: 8px;
+      --space-sm: 16px;
+      --space-md: 28px;
+      --space-lg: 48px;
+      --space-xl: 72px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    ::selection { background: var(--color-accent); color: #F2ECE1; }
+
+    body {
+      background-color: var(--color-ground);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.74;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    table, .tabular-nums { font-variant-numeric: tabular-nums; }
+
+    .page-shell {
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: var(--space-lg) var(--space-md) var(--space-xl);
+    }
+
+    /* 顶部卷首栏 */
+    .masthead {
+      border-top: 2px solid var(--color-rule-strong);
+      border-bottom: 1px solid var(--color-hairline);
+      padding: var(--space-md) 0;
+      margin-bottom: var(--space-md);
+    }
+
+    .masthead-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--color-hairline);
+      margin-bottom: 18px;
+    }
+
+    .doc-serial {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--color-ink-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .seal-mark {
+      border: 1px solid var(--color-accent);
+      color: var(--color-accent);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 8px;
+      letter-spacing: 0.14em;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: 34px;
+      font-weight: 600;
+      line-height: 1.26;
+      color: var(--color-ink);
+      margin-bottom: 12px;
+    }
+
+    .lead-summary {
+      max-width: 70ch;
+      color: var(--color-ink-secondary);
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border-top: 1px solid var(--color-hairline);
+      padding-top: 16px;
+      gap: 18px;
+    }
+
+    .kpi-item { border-left: 1px solid var(--color-hairline); padding-left: 14px; }
+    .kpi-item:first-child { border-left: 2px solid var(--color-accent); }
+    .kpi-label { font-size: 12px; color: var(--color-ink-muted); margin-bottom: 4px; }
+    .kpi-val { font-family: var(--font-mono); font-size: 20px; font-weight: 600; color: var(--color-ink); }
+    .kpi-sub { font-size: 12px; color: var(--color-ink-secondary); margin-top: 3px; }
+
+    /* 导航标尺 */
+    .tab-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1.5px solid var(--color-rule-strong);
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tab-group { display: flex; flex-wrap: wrap; }
+
+    .tab-btn {
+      appearance: none;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      padding: 12px 20px;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-ink-secondary);
+      cursor: pointer;
+      margin-bottom: -1.5px;
+    }
+
+    .tab-btn:hover { color: var(--color-ink); background: var(--color-surface); }
+    .tab-btn.active { color: var(--color-accent); border-bottom-color: var(--color-accent); }
+
+    .global-actions {
+      display: flex;
+      gap: 8px;
+      padding-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      appearance: none;
+      background: var(--color-surface);
+      border: 1px solid var(--color-rule-strong);
+      color: var(--color-ink);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+
+    .action-btn:hover { background: var(--color-ink); color: var(--color-ground); }
+    .action-btn.primary { background: var(--color-accent); border-color: var(--color-accent); color: #F2ECE1; }
+    .action-btn.primary:hover { background: #7D2417; }
+    .action-btn.active-toggle { background: var(--color-accent-azurite); border-color: var(--color-accent-azurite); color: #F2ECE1; }
+
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 21px;
+      font-weight: 600;
+      color: var(--color-ink);
+      margin-top: 30px;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-hairline);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    h2:first-child { margin-top: 0; }
+    .h2-note { font-family: var(--font-mono); font-size: 12px; font-weight: 400; color: var(--color-ink-muted); }
+
+    /* 四轨全片声景时间轴 */
+    .audio-timeline-box {
+      border: 1px solid var(--color-hairline);
+      background: var(--color-surface);
+      padding: 16px 18px;
+      margin-bottom: 24px;
+    }
+
+    .ruler-row {
+      display: grid;
+      grid-template-columns: 108px 1fr;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .ruler-ticks {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-ink-muted);
+    }
+
+    .track-row {
+      display: grid;
+      grid-template-columns: 108px 1fr;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 7px;
+    }
+
+    .track-name {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--color-ink-secondary);
+      text-align: right;
+    }
+
+    .track-lane {
+      position: relative;
+      height: 22px;
+      background: var(--color-ground);
+      border: 1px solid var(--color-hairline);
+      overflow: hidden;
+    }
+
+    .track-clip {
+      position: absolute;
+      top: 1px;
+      bottom: 1px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      line-height: 18px;
+      padding: 0 4px;
+      color: #F2ECE1;
+      white-space: nowrap;
+      overflow: hidden;
+      cursor: pointer;
+      border-right: 1px solid var(--color-ground);
+    }
+
+    .track-clip:hover { filter: brightness(0.88); }
+
+    /* 角色筛选与进棚控制条 */
+    .filter-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 12px 14px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-hairline);
+      margin-bottom: 18px;
+    }
+
+    .role-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .role-chip {
+      appearance: none;
+      background: var(--color-ground);
+      border: 1px solid var(--color-hairline);
+      color: var(--color-ink-secondary);
+      font-size: 12.5px;
+      padding: 5px 11px;
+      cursor: pointer;
+    }
+
+    .role-chip:hover { border-color: var(--color-rule-strong); color: var(--color-ink); }
+    .role-chip.active { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-ground); font-weight: 600; }
+
+    .progress-readout {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--color-accent-malachite);
+      font-weight: 600;
+    }
+
+    /* 配音条目列表 */
+    .cue-list {
+      border-top: 1.5px solid var(--color-rule-strong);
+    }
+
+    .cue-item {
+      display: grid;
+      grid-template-columns: 36px 132px 1fr 140px;
+      gap: 18px;
+      padding: 18px 12px;
+      border-bottom: 1px solid var(--color-hairline);
+      align-items: start;
+      transition: background-color 0.12s ease;
+    }
+
+    .cue-item:hover { background: rgba(231, 223, 206, 0.45); }
+    .cue-item.recorded { background: rgba(36, 103, 81, 0.06); }
+    .cue-item.recorded .cue-line-text { opacity: 0.68; }
+
+    @keyframes jumpPulse {
+      0% { background-color: rgba(158, 48, 32, 0.22); box-shadow: inset 4px 0 0 var(--color-accent); }
+      70% { background-color: rgba(158, 48, 32, 0.14); box-shadow: inset 4px 0 0 var(--color-accent); }
+      100% { background-color: transparent; box-shadow: inset 0 0 0 transparent; }
+    }
+    .jump-highlight {
+      animation: jumpPulse 2.4s ease-out;
+    }
+
+    .inline-jump-links {
+      display: inline-flex;
+      gap: 8px;
+      margin-left: 10px;
+      flex-wrap: wrap;
+    }
+    .mini-jump {
+      appearance: none;
+      background: transparent;
+      border: 1px solid var(--color-hairline);
+      color: var(--color-accent-azurite);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 1px 7px;
+      cursor: pointer;
+      text-decoration: none;
+      line-height: 1.5;
+    }
+    .mini-jump:hover {
+      background: var(--color-accent-azurite);
+      border-color: var(--color-accent-azurite);
+      color: #F2ECE1;
+    }
+    .masthead-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .cross-link-btn {
+      display: inline-block;
+      border: 1px solid var(--color-rule-strong);
+      background: var(--color-surface);
+      color: var(--color-ink);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      padding: 3px 10px;
+      text-decoration: none;
+    }
+    .cross-link-btn:hover {
+      background: var(--color-ink);
+      color: var(--color-ground);
+    }
+
+    .cue-check-wrap { padding-top: 4px; text-align: center; }
+    .cue-check { width: 17px; height: 17px; accent-color: var(--color-accent-malachite); cursor: pointer; }
+
+    .cue-meta-col { font-family: var(--font-mono); font-size: 12px; }
+    .cue-id { font-weight: 700; color: var(--color-accent); font-size: 13px; }
+    .cue-tc { color: var(--color-ink); margin-top: 3px; font-weight: 600; }
+    .cue-dur { color: var(--color-ink-muted); font-size: 11px; margin-top: 2px; }
+
+    .role-tag {
+      display: inline-block;
+      margin-top: 7px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border: 1px solid currentColor;
+    }
+
+    .cue-body-col { min-width: 0; }
+    .cue-scene-line {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--color-ink-muted);
+      margin-bottom: 6px;
+    }
+
+    .cue-line-text {
+      font-family: var(--font-display);
+      font-size: 19px;
+      line-height: 1.82;
+      color: var(--color-ink);
+      margin-bottom: 10px;
+      max-width: 58ch;
+    }
+
+    .cue-line-text ruby rt {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-accent);
+      font-weight: 600;
+    }
+
+    .cue-line-text .stress {
+      font-weight: 700;
+      border-bottom: 1.5px solid var(--color-accent);
+      padding-bottom: 1px;
+    }
+
+    .cue-line-text .pause-mark {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--color-accent-azurite);
+      font-weight: 600;
+      margin: 0 3px;
+    }
+
+    .cue-direction {
+      font-size: 13.5px;
+      color: var(--color-ink-secondary);
+      border-left: 2px solid var(--color-hairline);
+      padding-left: 12px;
+      line-height: 1.66;
+    }
+
+    .cue-direction strong { color: var(--color-ink); }
+
+    .cue-alt-bar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .alt-btn {
+      appearance: none;
+      background: var(--color-surface);
+      border: 1px solid var(--color-hairline);
+      padding: 3px 9px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      cursor: pointer;
+      color: var(--color-ink-secondary);
+    }
+
+    .alt-btn.active { background: var(--color-accent); border-color: var(--color-accent); color: #F2ECE1; }
+
+    .cue-visual-col { text-align: right; }
+    .cue-thumb {
+      width: 140px;
+      height: 79px;
+      object-fit: cover;
+      border: 1px solid var(--color-rule-strong);
+      background: #1E1812;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .pace-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-accent-malachite);
+    }
+
+    .pace-badge.fast { color: var(--color-accent); font-weight: 600; }
+
+    /* 棚内大字提词模式 */
+    body.booth-mode .audio-timeline-box,
+    body.booth-mode .masthead .lead-summary,
+    body.booth-mode .kpi-strip { display: none; }
+    body.booth-mode .cue-item { grid-template-columns: 36px 148px 1fr 180px; padding: 26px 14px; }
+    body.booth-mode .cue-line-text { font-size: 27px; line-height: 1.92; max-width: none; }
+    body.booth-mode .cue-direction { font-size: 15.5px; }
+    body.booth-mode .cue-thumb { width: 180px; height: 101px; }
+
+    /* 表格样式 */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      margin-bottom: 26px;
+      font-size: 14px;
+    }
+
+    .data-table th {
+      text-align: left;
+      font-family: var(--font-display);
+      font-weight: 600;
+      padding: 10px 12px;
+      border-top: 1.5px solid var(--color-rule-strong);
+      border-bottom: 1.5px solid var(--color-rule-strong);
+      background: var(--color-surface);
+      color: var(--color-ink);
+      white-space: nowrap;
+    }
+
+    .data-table td {
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--color-hairline);
+      vertical-align: top;
+      color: var(--color-ink-secondary);
+      line-height: 1.65;
+    }
+
+    .data-table td strong { color: var(--color-ink); }
+
+    /* 生僻字正音网格 */
+    .pron-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+      margin-bottom: 24px;
+    }
+
+    .pron-card {
+      border-top: 2px solid var(--color-rule-strong);
+      border-bottom: 1px solid var(--color-hairline);
+      background: var(--color-surface);
+      padding: 12px 14px;
+    }
+
+    .pron-word { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--color-ink); }
+    .pron-py { font-family: var(--font-mono); font-size: 13.5px; font-weight: 700; color: var(--color-accent); margin-top: 3px; }
+    .pron-warn { font-size: 12.5px; color: var(--color-ink-secondary); margin-top: 6px; line-height: 1.55; }
+
+    /* 角色音色卡 */
+    .cast-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    .cast-card {
+      border-top: 2px solid var(--color-rule-strong);
+      border-bottom: 1px solid var(--color-hairline);
+      padding: 14px 0;
+    }
+
+    .cast-title { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--color-ink); }
+    .cast-stats { font-family: var(--font-mono); font-size: 11.5px; color: var(--color-accent); margin: 4px 0 8px; }
+    .cast-desc { font-size: 13.5px; color: var(--color-ink-secondary); line-height: 1.68; }
+
+    .toast {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      background: var(--color-ink);
+      color: var(--color-ground);
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      padding: 10px 16px;
+      border-left: 3px solid var(--color-accent);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      z-index: 999;
+    }
+
+    .toast.show { opacity: 1; }
+
+    .footer-note {
+      margin-top: var(--space-xl);
+      padding-top: 16px;
+      border-top: 1px solid var(--color-hairline);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--color-ink-muted);
+    }
+
+    @media (max-width: 1024px) {
+      .kpi-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cue-item { grid-template-columns: 32px 115px 1fr; }
+      .cue-visual-col { display: none; }
+      .pron-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cast-grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      .tab-bar, .filter-toolbar, .audio-timeline-box, .cue-check-wrap, .cue-alt-bar { display: none !important; }
+      .panel { display: block !important; page-break-after: always; }
+      body { background: #FFFFFF; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="masthead">
+      <div class="masthead-top">
+        <span class="doc-serial">GUOBO-4DVR-XSZ · AUDIO MASTER WORKBENCH · 480s TIMECODE LOCKED · VO / DIALOGUE / SCORE / 360° SFX</span>
+        <div class="masthead-right">
+          <a class="cross-link-btn" href="./夏商西周_4D_VR分镜导演审片工作台.html">← 切换至分镜导演审片台</a>
+          <span class="seal-mark">声音与配音专版</span>
+        </div>
+      </div>
+      <h1>《夏商西周·礼乐之基，青铜之魂》配音台本、配乐总谱与空间音效工作台</h1>
+      <p class="lead-summary">
+        专供<strong>配音师、配音导演、作曲配乐师与 360° 空间混音师</strong>进棚使用。全片 <strong>480 秒（08:00）</strong>共梳理 <strong>26 条人声 Cue（含主旁白、7 位角色对白、服务提示与两段万军群声）</strong>，已全部完成语速秒数校核（严控 2.7–4.5 字/秒防赶口）、<strong>12 组考古生僻字/古音强制注音标红</strong>、7 幕配器 BPM 总谱与 4D 座椅低频硬锁帧表。
+      </p>
+      <div class="kpi-strip tabular-nums">
+        <div class="kpi-item">
+          <div class="kpi-label">全片锁定总长</div>
+          <div class="kpi-val">08:00 (480s)</div>
+          <div class="kpi-sub">真·一镜到底零时间码跳变</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">配音人声总条数</div>
+          <div class="kpi-val">26 Cues</div>
+          <div class="kpi-sub" id="totalCharsSub">全片有效汉字精确统计中</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">独立配音角色</div>
+          <div class="kpi-val">8 声线 + 群声</div>
+          <div class="kpi-sub">支持按单一角色筛选导出</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">考古正音红线</div>
+          <div class="kpi-val">12 组重点词</div>
+          <div class="kpi-sub">妇妌 jǐng · 利簋 guǐ · 鸱鸮 xiāo</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">4D 音效硬锁帧点</div>
+          <div class="kpi-val">9 处 LFE 锚点</div>
+          <div class="kpi-sub">灼骨“卜”声 ±10ms 严锁 60Hz</div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="tab-bar" role="tablist">
+      <div class="tab-group">
+        <button class="tab-btn active" data-tab="vo" role="tab">一、逐句配音台本（进棚版）</button>
+        <button class="tab-btn" data-tab="pron" role="tab">二、生僻字正音与角色音色卡</button>
+        <button class="tab-btn" data-tab="music" role="tab">三、7 幕配乐总谱与 BPM 编排</button>
+        <button class="tab-btn" data-tab="sfx" role="tab">四、360° 空间音效与 4D 锁帧表</button>
+      </div>
+      <div class="global-actions">
+        <button class="action-btn" id="boothToggleBtn">棚内大字提词模式</button>
+        <button class="action-btn" id="copyRoleBtn">复制当前角色台词</button>
+        <button class="action-btn primary" id="exportTxtBtn">导出配音台本 .TXT</button>
+      </div>
+    </nav>
+
+    <!-- 面板一：逐句配音台本 -->
+    <section id="panel-vo" class="panel active">
+      <h2>
+        <span>480 秒四轨声音结构总览（点击任意时间块直跳：VO/对白→台词 ｜ MUS→配乐总谱 ｜ SFX→4D锁帧表）</span>
+        <span class="h2-note">朱砂 = 主旁白 ｜ 鎏金 = 角色对白 ｜ 石青/多色 = 7 幕配乐 ｜ 铜绿 = 4D 锁帧音效</span>
+      </h2>
+
+      <div class="audio-timeline-box">
+        <div class="ruler-row">
+          <div></div>
+          <div class="ruler-ticks tabular-nums">
+            <span>00:00</span><span>01:00</span><span>02:00</span><span>03:00</span>
+            <span>04:00</span><span>05:00</span><span>06:00</span><span>07:00</span><span>08:00</span>
+          </div>
+        </div>
+        <div class="track-row">
+          <div class="track-name">VO 主旁白/提示</div>
+          <div class="track-lane" id="laneVO"></div>
+        </div>
+        <div class="track-row">
+          <div class="track-name">DLG 角色对白</div>
+          <div class="track-lane" id="laneDLG"></div>
+        </div>
+        <div class="track-row">
+          <div class="track-name">MUS 7 幕配乐</div>
+          <div class="track-lane" id="laneMUS"></div>
+        </div>
+        <div class="track-row">
+          <div class="track-name">SFX 4D 锁帧点</div>
+          <div class="track-lane" id="laneSFX"></div>
+        </div>
+      </div>
+
+      <div class="filter-toolbar">
+        <div class="role-chips" id="roleChips"></div>
+        <div class="progress-readout tabular-nums" id="progressReadout">已录勾选：0 / 26</div>
+      </div>
+
+      <div class="cue-list" id="cueList"></div>
+    </section>
+
+    <!-- 面板二：生僻字正音与角色音色卡 -->
+    <section id="panel-pron" class="panel">
+      <h2>
+        <span>进棚前必读：12 组国博考古生僻字、古音与易错字红线表</span>
+        <span class="h2-note">按《现代汉语词典》第 7 版与中国国家博物馆官方讲解标准核定</span>
+      </h2>
+      <div class="pron-grid" id="pronGrid"></div>
+
+      <h2>
+        <span>配音角色音色设定、情绪弧光与棚内录制规范（8 声线 + 群声）</span>
+        <span class="h2-note">建议 48kHz / 24bit 单声道无压缩干声 WAV（群声立体声/多轨分录）</span>
+      </h2>
+      <div class="cast-grid" id="castGrid"></div>
+    </section>
+
+    <!-- 面板三：7 幕配乐总谱 -->
+    <section id="panel-music" class="panel">
+      <h2>
+        <span>全片 7 幕原创配乐总谱、配器谱系与动态情绪曲线（00:00 – 08:00）</span>
+        <span class="h2-note">核心理念：商周金石古乐（编钟/石磬/陶埙/骨笛/编铙/大鼓）× 克制电影交响弦乐</span>
+      </h2>
+
+      <div class="audio-timeline-box">
+        <div style="font-family:var(--font-mono);font-size:12px;color:var(--color-ink-secondary);margin-bottom:8px;">
+          配乐能量密度（朱砂实线）vs. 速度 BPM 脉动（石青实线）｜ 标注两处关键全场抽空静默点（04:07 灼骨死寂 · 07:12 冲锋归钟）
+        </div>
+        <svg id="musicCurveSvg" viewBox="0 0 1200 148" width="100%" height="148" aria-label="配乐情绪与BPM曲线"></svg>
+      </div>
+
+      <table class="data-table tabular-nums">
+        <thead>
+          <tr>
+            <th style="width:128px;">幕次与时间码</th>
+            <th style="width:94px;">BPM / 调性</th>
+            <th style="width:200px;">核心主奏古乐与编配</th>
+            <th style="width:250px;">情绪走向与关键卡点（Hit Points）</th>
+            <th>人声避让（Ducking）与混音说明</th>
+          </tr>
+        </thead>
+        <tbody id="musicTableBody"></tbody>
+      </table>
+    </section>
+
+    <!-- 面板四：360° 空间音效与 4D 锁帧表 -->
+    <section id="panel-sfx" class="panel">
+      <h2>
+        <span>360° VR 空间音频（Ambisonics + Object）与 4D 动感座椅低频硬锁帧总表</span>
+        <span class="h2-note">空间方位角：0°正前 / -90°正左 / +90°正右 / +75°天顶 ｜ LFE 通道同步驱动座椅震动</span>
+      </h2>
+      <table class="data-table tabular-nums">
+        <thead>
+          <tr>
+            <th style="width:90px;">精确时间码</th>
+            <th style="width:150px;">事件名称与镜段</th>
+            <th style="width:140px;">360° 空间声源方位</th>
+            <th style="width:250px;">拟音材质与分层设计（Foley / SFX）</th>
+            <th>4D 座椅低频震动 / 风效硬锁帧参数</th>
+          </tr>
+        </thead>
+        <tbody id="sfxTableBody"></tbody>
+      </table>
+    </section>
+
+    <footer class="footer-note">
+      <span>国家博物馆《古代中国》4D VR · 夏商西周篇全声线工作台（V3.0）</span>
+      <span>棚内勾选进度自动保存于本机浏览器 · 支持打印 A4 进棚台本</span>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const TOTAL_DUR = 480;
+
+    const ROLE_META = {
+      "ALL": { label: "全部声线", color: "#231C14" },
+      "主旁白": { label: "主旁白（沉稳男声）", color: "#9E3020" },
+      "工头": { label: "工头（壮年粗犷）", color: "#7B3A1E" },
+      "老工匠": { label: "老工匠（沧桑慈厚）", color: "#574836" },
+      "小工匠": { label: "小工匠（14岁少年）", color: "#A87C33" },
+      "妇好": { label: "妇好（英气女战神）", color: "#8B1E1E" },
+      "亲兵": { label: "亲兵（热血青年）", color: "#6E5233" },
+      "服务语音": { label: "服务语音（亲切女声）", color: "#246751" },
+      "史官·利": { label: "史官·利（温润深沉）", color: "#1B4D6B" },
+      "周武王": { label: "周武王（霸气帝王）", color: "#36455A" },
+      "群声": { label: "万军群声（多轨合录）", color: "#4A3C2C" }
+    };
+
+    const TRANSITION_ALTS = {
+      A: {
+        name: "方案 A（推荐定稿 · 国博庄重版）",
+        plain: "然而，青铜铸就的盛世并非永恒。商朝晚期，礼崩于奢、民怨沸腾；渭水之畔的新兴周邦，正蓄势以待天命更迭。公元前 1046 年甲子清晨，一场改写华夏文明走向的决战，已在牧野拉开了帷幕。",
+        rich: "然而，青铜铸就的盛世<span class='stress'>并非永恒</span>。<span class='pause-mark'>/</span>商朝晚期，礼崩于奢、民怨沸腾；<span class='pause-mark'>/</span>渭水之畔的新兴周邦，正蓄势以待<span class='stress'>天命更迭</span>。<span class='pause-mark'>//</span>公元前 1046 年<ruby>甲子<rt>jiǎ zǐ</rt></ruby>清晨，一场改写华夏文明走向的决战，已在<span class='stress'><ruby>牧野<rt>mù yě</rt></ruby></span>拉开了帷幕。"
+      },
+      B: {
+        name: "方案 B（礼乐意象诗意版）",
+        plain: "繁星璀璨之时，旧日的鼎火却已渐微。大邑商奢靡失德，天命悄然移向西方渭水。公元前 1046 年的甲子黎明，一场决定天下归属与礼乐新生的决战，即将在牧野打响。",
+        rich: "繁星璀璨之时，旧日的<span class='stress'>鼎火却已渐微</span>。<span class='pause-mark'>/</span><ruby>大邑商<rt>dà yì shāng</rt></ruby>奢靡失德，天命悄然移向西方渭水。<span class='pause-mark'>//</span>公元前 1046 年的<ruby>甲子<rt>jiǎ zǐ</rt></ruby>黎明，一场决定天下归属与<span class='stress'>礼乐新生</span>的决战，即将在<ruby>牧野<rt>mù yě</rt></ruby>打响。"
+      },
+      C: {
+        name: "方案 C（极简紧凑快节奏版）",
+        plain: "当青铜文明遍及四方，大邑商的统治却走到了尽头。公元前 1046 年甲子清晨，渭水之畔的周人兵临牧野——一场改写中国历史的决战，一触即发。",
+        rich: "当青铜文明遍及四方，<ruby>大邑商<rt>dà yì shāng</rt></ruby>的统治却走到了尽头。<span class='pause-mark'>/</span>公元前 1046 年<ruby>甲子<rt>jiǎ zǐ</rt></ruby>清晨，渭水之畔的周人兵临<ruby>牧野<rt>mù yě</rt></ruby><span class='pause-mark'>//</span>——一场改写中国历史的决战，<span class='stress'>一触即发</span>。"
+      }
+    };
+
+    const VOICE_CUES = [
+      {
+        id: "V01", shot: "S01 · B01", act: "第一幕 · 二里头青铜爵", role: "主旁白", type: "VO",
+        start: 0.5, end: 14.5, img: "./storyboards/S01_erlitou_molds.png",
+        plain: "夏商西周，是中国早期国家形成与发展的重要时期。生产力飞跃前行，社会分工日益细密，青铜铸造更铸就了辉煌灿烂的“青铜时代”。",
+        rich: "<span class='stress'>夏商西周</span>，是中国早期国家形成与发展的重要时期。<span class='pause-mark'>/</span>生产力飞跃前行，社会分工日益细密，<span class='pause-mark'>/</span>青铜铸造更铸就了辉煌灿烂的<span class='stress'>“青铜时代”</span>。",
+        dir: "<strong>开篇定调（权威沉稳）</strong>：胸腔共鸣饱满，不急不躁，从历史纵深处缓缓铺开；“青铜时代”四字略拉宽重读，留出 0.5s 气口衔接下一句。"
+      },
+      {
+        id: "V02", shot: "S01–S02 · B02–B03", act: "第一幕 · 二里头青铜爵", role: "主旁白", type: "VO",
+        start: 14.5, end: 29.5, img: "./storyboards/S02_bronze_jue_casting.png",
+        plain: "三千多年前，在河南偃师，二里头先民以不断完善的“复合范铸造法”，使大型而复杂的青铜器得以成形——这是华夏青铜文明的第一次飞跃。",
+        rich: "三千多年前，在河南<ruby>偃师<rt>yǎn shī</rt></ruby>，二里头先民以不断完善的<span class='stress'>“复合范铸造法”</span>，<span class='pause-mark'>/</span>使大型而复杂的青铜器得以成形<span class='pause-mark'>//</span>——这是华夏青铜文明的<span class='stress'>第一次飞跃</span>。",
+        dir: "<strong>工艺揭秘（清晰笃定）</strong>：“偃师”勿读成 yān；前半句贴合外范剥离画面，破折号后随熔铜入范情绪微微上扬，至 00:29.5 收口把热风与脱范碎裂声完全让给音效。"
+      },
+      {
+        id: "V03", shot: "S04 · B08", act: "第二幕 · 殷墟后母戊鼎", role: "工头", type: "DLG",
+        start: 62.5, end: 70.5, img: "./storyboards/S04_yinxu_artisans_tension.png",
+        plain: "昨儿偏偏断在浇口那半息！今儿几十座坩埚合浇，火候时辰差半分，整座范坑就废了！",
+        rich: "昨儿偏偏断在浇口那半息！<span class='pause-mark'>/</span>今儿几十座<ruby>坩埚<rt>gān guō</rt></ruby>合浇，<span class='pause-mark'>/</span>火候时辰差半分，<span class='stress'>整座范坑就废了！</span>",
+        dir: "<strong>近景对白 · 危机压迫</strong>：嗓音沙哑洪亮、带着焦灼与怒气（但并非恶霸，是对工程负责的严厉）；语速紧凑带喘息，注意“坩埚 gān guō”咬字清楚，声场略偏右前方。"
+      },
+      {
+        id: "V04", shot: "S04 · B08", act: "第二幕 · 殷墟后母戊鼎", role: "小工匠", type: "DLG",
+        start: 70.5, end: 77.5, img: "./storyboards/S04_yinxu_artisans_tension.png",
+        plain: "师父……这鼎范比往常大了何止数倍，头一回见这么沉的铜水，我手心里直打颤……",
+        rich: "师父……<span class='pause-mark'>/</span>这鼎范比往常大了何止数倍，头一回见这么沉的铜水，<span class='pause-mark'>/</span>我手心里直打颤……",
+        dir: "<strong>14 岁少年学徒 · 怯场发怵</strong>：声音清亮尚带变声期稚气，刻意压低音量向师父嘟囔，字尾略发虚、透出真实紧张感（严禁演成滑稽喜剧腔）。"
+      },
+      {
+        id: "V05", shot: "S04 · B09", act: "第二幕 · 殷墟后母戊鼎", role: "老工匠", type: "DLG",
+        start: 77.5, end: 88, img: "./storyboards/S04_yinxu_artisans_tension.png",
+        plain: "忘了你当初求进铸坊的话？武丁先王在时，若非妇妌王后率众种黍开荒，哪有咱们饱饭、哪有你今日活命？",
+        rich: "忘了你当初求进铸坊的话？<span class='pause-mark'>/</span>武丁先王在时，若非<span class='stress'><ruby>妇妌<rt>fù jǐng</rt></ruby>王后</span>率众种<ruby>黍<rt>shǔ</rt></ruby>开荒，<span class='pause-mark'>/</span>哪有咱们饱饭、哪有你今日活命？",
+        dir: "<strong>沧桑厚重 · 严正正音！</strong>：<strong>“妇妌”必读 fù jǐng（三声）</strong>！语气并非斥责，而是按住少年肩膀后的低沉推心置腹，带着对先王后深深的感恩与敬重。"
+      },
+      {
+        id: "V06", shot: "S04 · B09", act: "第二幕 · 殷墟后母戊鼎", role: "工头", type: "DLG",
+        start: 88, end: 92.5, img: "./storyboards/S04_yinxu_artisans_tension.png",
+        plain: "都提足精神！为王后铸鼎，火候、时辰，半分差不得！",
+        rich: "<span class='stress'>都提足精神！</span><span class='pause-mark'>/</span>为王后铸鼎，火候、时辰，半分差不得！",
+        dir: "<strong>面向全场百工喊话</strong>：比 V03 声量再放开 30%，带一点作坊大棚空间回声感，把紧张焦虑转化为全员凝心的士气！"
+      },
+      {
+        id: "V07", shot: "S04 · B09", act: "第二幕 · 殷墟后母戊鼎", role: "老工匠", type: "DLG",
+        start: 92.5, end: 95.5, img: "./storyboards/S04_yinxu_artisans_tension.png",
+        plain: "允了的事，就得拿命托住。去吧！",
+        rich: "允了的事，就得<span class='stress'>拿命托住</span>。<span class='pause-mark'>/</span>去吧！",
+        dir: "<strong>短促有力 · 师徒定锚</strong>：前半句低沉如铁，末二字“去吧”略带温和推力。"
+      },
+      {
+        id: "V08", shot: "S04–S05 · B09–B10", act: "第二幕 · 殷墟后母戊鼎", role: "小工匠", type: "DLG",
+        start: 95.5, end: 99.5, img: "./storyboards/S05_pit_casting_ding.png",
+        plain: "是！今日拼了气力，差错绝不出在我手上！",
+        rich: "<span class='stress'>是！</span><span class='pause-mark'>/</span>今日拼了气力，差错绝不出在我手上！",
+        dir: "<strong>彻底替换原稿“嗯嗯”</strong>：第一字“是！”干脆利落响亮，少年瞬间褪去怯懦，一边说完一边转身奔向地坑（后半句可略带微动呼吸感）。"
+      },
+      {
+        id: "V09", shot: "S05 · B10", act: "第二幕 · 殷墟后母戊鼎", role: "老工匠", type: "DLG",
+        start: 99.5, end: 101, img: "./storyboards/S05_pit_casting_ding.png",
+        plain: "这就对了！",
+        rich: "这就对了！",
+        dir: "<strong>欣慰收束</strong>：看着少年背影，短促舒气、含笑颔首（01:41.0 严丝合缝炸入八槽合浇号子与铜液咆哮）。"
+      },
+      {
+        id: "V10", shot: "S06 · B11–B12", act: "第二幕 · 殷墟后母戊鼎", role: "主旁白", type: "VO",
+        start: 113, end: 135, img: "./storyboards/S06_houmuwu_ding_glow.png",
+        plain: "后母戊鼎的纹饰带有庄严神秘的色彩。“后母戊”铭文，表明它曾被献给一位史上留名的女性“妇妌”——她是商代中兴之主武丁的王后。后母戊鼎是妇妌的儿子为祭祀她所铸造的，这是刻在青铜上的思念，是商代礼制与亲情的集中体现。",
+        rich: "后母戊鼎的纹饰带有庄严神秘的色彩。<span class='pause-mark'>/</span>“后母戊”铭文，表明它曾被献给一位史上留名的女性<span class='stress'>“<ruby>妇妌<rt>fù jǐng</rt></ruby>”</span>——她是商代中兴之主武丁的王后。<span class='pause-mark'>//</span>后母戊鼎是<ruby>妇妌<rt>fù jǐng</rt></ruby>的儿子为祭祀她所铸造的，<span class='pause-mark'>/</span>这是<span class='stress'>刻在青铜上的思念</span>，是商代礼制与亲情的集中体现。",
+        dir: "<strong>由庄严转温情（全片第一次柔软落点）</strong>：再次严查“妇妌 fù jǐng”；读至“刻在青铜上的思念”放缓声线、减退播音腔，如轻抚三千年前的母子深情。"
+      },
+      {
+        id: "V11", shot: "S07 · B14", act: "第三幕 · 妇好与青铜鸮尊", role: "主旁白", type: "VO",
+        start: 143, end: 149, img: "./storyboards/S07_fuhao_oath_altar.png",
+        plain: "而在武丁中兴的另一座祭坛上，王后妇好，正率师出征。",
+        rich: "而在武丁中兴的另一座祭坛上，<span class='pause-mark'>/</span>王后<span class='stress'>妇好</span>，正率师出征。",
+        dir: "<strong>新增关键史实断代衔接</strong>：穿过宗庙青烟后语气由温情瞬间切入冷峻肃杀，“妇好”二字前后微停，立住女战神气场。"
+      },
+      {
+        id: "V12", shot: "S08 · B15", act: "第三幕 · 妇好与青铜鸮尊", role: "妇好", type: "DLG",
+        start: 155, end: 163, img: "./storyboards/S08_owl_sandstorm_flight.png",
+        plain: "鸮乃威猛善战之鸟，勇悍无匹！正是上天预示我军，此次攻敌，必大获全胜！",
+        rich: "<span class='stress'><ruby>鸮<rt>xiāo</rt></ruby></span>乃威猛善战之鸟，勇悍无匹！<span class='pause-mark'>/</span>正是上天预示我军，此次攻敌，<span class='stress'>必大获全胜！</span>",
+        dir: "<strong>商代第一女战神 · 高台誓师</strong>：<strong>首字“鸮”必读 xiāo（一声）</strong>！女中音底色，气沉丹田、声穿四野，绝不可尖细发飘；末句“必大获全胜”向上托举引爆千军呐喊！"
+      },
+      {
+        id: "V13", shot: "S08 · B15", act: "第三幕 · 妇好与青铜鸮尊", role: "群声", type: "DLG",
+        start: 164, end: 166.5, img: "./storyboards/S08_owl_sandstorm_flight.png",
+        plain: "胜！胜！胜！（千军齐举青铜戈震天怒吼）",
+        rich: "<span class='stress'>胜！</span><span class='pause-mark'>/</span><span class='stress'>胜！</span><span class='pause-mark'>/</span><span class='stress'>胜！</span>",
+        dir: "<strong>万军群声 · 4D 座椅同步重震</strong>：建议 6–8 名男配音分 3 轮叠录混成千人声墙，严格按 0.8s 节奏齐喊三次，对齐座椅 65% 重震！"
+      },
+      {
+        id: "V14", shot: "S09 · B17", act: "第三幕 · 妇好与青铜鸮尊", role: "亲兵", type: "DLG",
+        start: 176, end: 187.5, img: "./storyboards/S09_fuhao_jade_owl_zun.png",
+        plain: "王后！大胜了！咱们大胜了！方才您冲锋陷阵时，这枚玉凤坠落沙场——卑职知道这是大王所赠、您从不离身之物，拼死给您寻回来了！",
+        rich: "王后！<span class='stress'>大胜了！</span>咱们大胜了！<span class='pause-mark'>/</span>方才您冲锋陷阵时，这枚<span class='stress'>玉凤</span>坠落沙场<span class='pause-mark'>/</span>——卑职知道这是大王所赠、您从不离身之物，拼死给您寻回来了！",
+        dir: "<strong>战后热血青年 · 喘息激动</strong>：刚从血战冲出，前两句带奔跑急喘与狂喜；说到“玉凤 / 大王所赠”语气骤然放诚恳恭敬，双手高捧的虔诚感要听得出来。"
+      },
+      {
+        id: "V15", shot: "S10 · B19", act: "第四幕 · 协田与甲骨灼兆", role: "主旁白", type: "VO",
+        start: 213, end: 229, img: "./storyboards/S10_shang_farmland_glyphs.png",
+        plain: "战火平息，田野重归安宁。先民们协力耕作的身影，连同对丰年与天命的敬畏，化作了刻在甲骨上的古老文字——华夏文明的记忆，自此有了清晰的印记。",
+        rich: "战火平息，田野重归安宁。<span class='pause-mark'>/</span>先民们协力耕作的身影，连同对丰年与天命的敬畏，<span class='pause-mark'>/</span>化作了刻在甲骨上的古老文字<span class='pause-mark'>//</span>——华夏文明的记忆，自此有了<span class='stress'>清晰的印记</span>。",
+        dir: "<strong>舒朗温暖 · 贴合夕阳麦浪</strong>：褪去上一幕战争金属感，声线如黄昏晚风般清朗开阔；末句缓缓沉稳落定，为接下来的黑夜占卜留白。"
+      },
+      {
+        id: "V16", shot: "S12 · B22", act: "第五幕 · 繁星交辉", role: "主旁白", type: "VO",
+        start: 266, end: 279, img: "./storyboards/S12_bronze_constellation.png",
+        plain: "商周时期，青铜文明并非单一中心，而是在广袤的中华大地上交相辉映，如同繁星，共同点亮了华夏的天空。",
+        rich: "商周时期，青铜文明并非单一中心，<span class='pause-mark'>/</span>而是在广袤的中华大地上<span class='stress'>交相辉映</span>，<span class='pause-mark'>/</span>如同繁星，共同点亮了华夏的天空。",
+        dir: "<strong>浩瀚辽阔 · 托起星图空间</strong>：配合兆纹化星河升空，音色打开、带有仰望苍穹的悠远空间感，语速舒缓（3.1 字/秒）。"
+      },
+      {
+        id: "V17", shot: "S13 · B24", act: "第五幕 · 四羊方尊实触交互", role: "主旁白", type: "VO",
+        start: 288, end: 323, img: "./storyboards/S13_siyang_fangzun_haptic.png",
+        plain: "让我们通过指端的触感，细细体会四羊青铜方尊。它是现存商代最大的方形青铜尊，用于祭祀之礼，运用了高超的“三层花”装饰手法——底层云雷密布，中层蕉叶、兽面、龙凤与四羊高浮雕雄浑突出，顶层再施鳞纹阴线精雕细刻，繁而不乱，尽显庄重威严。此尊出土于洞庭湖三苗活动区，却与中原青铜工艺彼此呼应，见证了早期黄河与长江流域的文化交融，是华夏文明多元一体的最早实证之一。",
+        rich: "让我们通过指端的触感，细细体会<span class='stress'>四羊青铜方尊</span>。<span class='pause-mark'>/</span>它是现存商代最大的方形青铜尊，用于祭祀之礼，运用了高超的<span class='stress'>“三层花”</span>装饰手法<span class='pause-mark'>/</span>——底层云雷密布，中层蕉叶、兽面、龙凤与四羊高浮雕雄浑突出，顶层再施鳞纹阴线精雕细刻，繁而不乱，尽显庄重威严。<span class='pause-mark'>//</span>此尊出土于洞庭湖<ruby>三苗<rt>sān miáo</rt></ruby>活动区，却与中原青铜工艺彼此呼应，<span class='pause-mark'>/</span>见证了早期黄河与长江流域的文化交融，是<span class='stress'>华夏文明多元一体</span>的最早实证之一。",
+        dir: "<strong>核心伴触讲解（极其关键！）</strong>：观众此刻正伸手真实抚摸密格里的四羊方尊！嗓音要极亲切、陪伴感强、切忌说教；读“底层 / 中层 / 顶层”三段须保持均匀节拍，严格配合画面三层花扫光（04:55 / 05:01 / 05:08）。"
+      },
+      {
+        id: "V18", shot: "S13 · B25", act: "第五幕 · 四羊方尊实触交互", role: "服务语音", type: "VO",
+        start: 324, end: 330, img: "./storyboards/S13_siyang_fangzun_haptic.png",
+        plain: "现在请大家轻轻收回双手，扶稳坐好，和四羊方尊说再见。",
+        rich: "现在请大家轻轻收回双手，<span class='pause-mark'>/</span>扶稳坐好，<span class='pause-mark'>/</span>和四羊方尊说再见。",
+        dir: "<strong>全年龄安全提示（温柔礼宾女声）</strong>：音色温暖微笑、清晰从容（3.8 字/秒，绝非机械播报）；面向老人与小朋友，“轻轻收回双手”后微停半拍，留出红外防夹手缓冲！"
+      },
+      {
+        id: "V19", shot: "S14 · B26", act: "第五幕 · 三星堆青铜纵目面具", role: "主旁白", type: "VO",
+        start: 331, end: 354.5, img: "./storyboards/S14_sanxingdui_mask_serene.png",
+        plain: "在遥远的西南蜀地，与中原迥异的青铜器，正以奇特语言讲述另一种神秘文化。这尊青铜纵目面具，来自四川广汉三星堆遗址。这里出土的器物造型与内涵独树一帜，却又与中原礼制交流借鉴，为中华文明多元一体格局提供了关键实证。",
+        rich: "在遥远的西南蜀地，与中原迥异的青铜器，正以奇特语言讲述另一种神秘文化。<span class='pause-mark'>//</span>这尊青铜<span class='stress'><ruby>纵目<rt>zòng mù</rt></ruby></span>面具，来自四川广汉三星堆遗址。<span class='pause-mark'>/</span>这里出土的器物造型与内涵独树一帜，却又与中原礼制交流借鉴，<span class='pause-mark'>/</span>为<span class='stress'>中华文明多元一体格局</span>提供了关键实证。",
+        dir: "<strong>神秘敬畏（绝不惊悚鬼魅！）</strong>：音色轻沉带一点气声质感，营造古蜀神庙的深邃奇崛与崇高感，注意“纵目 zòng mù”发四声清脆准确。"
+      },
+      {
+        id: "V20", shot: "S14 · B27", act: "第五幕 → 第六幕 商周转折", role: "主旁白", type: "VO",
+        start: 355.5, end: 374.5, img: "./storyboards/S14_sanxingdui_mask_serene.png",
+        isAlt: true,
+        plain: TRANSITION_ALTS.A.plain,
+        rich: TRANSITION_ALTS.A.rich,
+        dir: "<strong>【原稿 L70 专项重制 · 棚内建议三版全录！】</strong>：彻底删除原稿三国穿帮句；前半句沉郁转冷，从“公元前 1046 年甲子清晨”起语势蓄力抬升，06:14.5 准时收口留 1.5s 接 06:16.0 岁星破云！"
+      },
+      {
+        id: "V21", shot: "S15 · B28", act: "第六幕 · 牧野拂晓誓师", role: "史官·利", type: "DLG",
+        start: 377.5, end: 381, img: "./storyboards/S15_muye_dawn_jupiter.png",
+        plain: "大王您看！岁星当空，吉兆显现了！",
+        rich: "大王您看！<span class='pause-mark'>/</span><span class='stress'><ruby>岁星<rt>suì xīng</rt></ruby></span>当空，吉兆显现了！",
+        dir: "<strong>第一人称主视角近声（贴耳微距感）</strong>：此刻观众即史官“利”，混音极贴近中置声道；年轻干练的文臣声音压抑不住仰见木星破云时的狂喜与振奋！"
+      },
+      {
+        id: "V22", shot: "S15 · B29", act: "第六幕 · 牧野拂晓誓师", role: "主旁白", type: "VO",
+        start: 381.5, end: 388.5, img: "./storyboards/S15_muye_dawn_jupiter.png",
+        plain: "商朝晚期，矛盾激化。周武王率领盟友，同数倍于己的商朝大军，在此一决生死。",
+        rich: "商朝晚期，矛盾激化。<span class='pause-mark'>/</span>周武王率领盟友，同数倍于己的商朝大军，<span class='stress'>在此一决生死</span>。",
+        dir: "<strong>短促紧迫 · 战前弓弦拉满</strong>：全片节奏最快、张力最紧的一句旁白，精准落在 7.0 秒内把空气彻底压紧，把舞台瞬间交给周武王！"
+      },
+      {
+        id: "V23", shot: "S15 · B29", act: "第六幕 · 牧野拂晓誓师", role: "周武王", type: "DLG",
+        start: 389, end: 393, img: "./storyboards/S15_muye_dawn_jupiter.png",
+        plain: "称尔戈，比尔干，立尔矛，予其誓！",
+        rich: "<span class='stress'><ruby>称<rt>chēng</rt></ruby>尔戈</span>，<span class='pause-mark'>/</span><span class='stress'><ruby>比<rt>bǐ</rt></ruby>尔<ruby>干<rt>gān</rt></ruby></span>，<span class='pause-mark'>/</span><span class='stress'>立尔矛</span>，<span class='pause-mark'>/</span><span class='stress'><ruby>予<rt>yǔ</rt></ruby>其誓！</span>",
+        dir: "<strong>《尚书·牧誓》千古名句 · 必纠古音！</strong>：<strong>称 chēng（举起）、比 bǐ（列齐，禁读 bì）、干 gān（盾牌）、予 yǔ（我）</strong>！雄浑威严男低中音，前三个三字短令如重锤敲铜、层层攀升，“予其誓！”破空定鼎！"
+      },
+      {
+        id: "V24", shot: "S15 · B29", act: "第六幕 · 牧野拂晓誓师", role: "群声", type: "DLG",
+        start: 393, end: 395.5, img: "./storyboards/S16_chariot_charge_cockpit.png",
+        plain: "杀！杀！杀！（周军万众战车冲锋前怒吼）",
+        rich: "<span class='stress'>杀！</span><span class='pause-mark'>/</span><span class='stress'>杀！</span><span class='pause-mark'>/</span><span class='stress'>杀！</span>",
+        dir: "<strong>全片声浪巅峰引爆点</strong>：多轨叠加浑厚男声齐吼，比 V13 商军更铁血决绝，三声递进锁死座椅 40%→55%→75% 重锤震动，无缝砸进 41 秒战车冲锋！"
+      },
+      {
+        id: "V25", shot: "S17 · B31–B32", act: "第七幕 · 利簋铭文化星终章", role: "史官·利", type: "DLG",
+        start: 437.5, end: 459, img: "./storyboards/S17_ligui_stars_finale.png",
+        plain: "我叫利。甲子日清晨，岁星当空，我随王出征。在牧野战斗了短短一天，“小邦周”就击败了“大邑商”。我用王赐下的吉金，铸了这只簋。它会比我们所有人存世更长久，默默地讲着先祖和我们的故事——世世代代，永志不忘。",
+        rich: "我叫利。<span class='pause-mark'>/</span><ruby>甲子<rt>jiǎ zǐ</rt></ruby>日清晨，<ruby>岁星<rt>suì xīng</rt></ruby>当空，我随王出征。<span class='pause-mark'>/</span>在牧野战斗了短短一天，“<ruby>小邦周<rt>xiǎo bāng zhōu</rt></ruby>”就击败了“<ruby>大邑商<rt>dà yì shāng</rt></ruby>”。<span class='pause-mark'>/</span>我用王赐下的<span class='stress'><ruby>吉金<rt>jí jīn</rt></ruby></span>，铸了这只<span class='stress'><ruby>簋<rt>guǐ</rt></ruby></span>。<span class='pause-mark'>//</span>它会比我们所有人存世更长久，默默地讲着先祖和我们的故事<span class='pause-mark'>/</span>——<span class='stress'>世世代代，永志不忘</span>。",
+        dir: "<strong>全片最动人的灵魂独白（画外音 · 严查“簋 guǐ”三声！）</strong>：与 V21 同一配音师，但此刻已历尽沧桑、褪尽锋芒；嗓音极其克制、温柔、贴近麦克风如穿越三千年的低语，末八字轻缓落泪感拉满！"
+      },
+      {
+        id: "V26", shot: "S17 · B32", act: "第七幕 · 利簋铭文化星终章", role: "主旁白", type: "VO",
+        start: 459.5, end: 477.5, img: "./storyboards/S17_ligui_stars_finale.png",
+        plain: "利簋铭文为夏商周断代工程确立了重要时间坐标。经天文推算，结合文献与考古实证，最终确定公元前 1046 年为武王克商之年。这是刻在青铜上的时间密码，是华夏文明的关键锚点。",
+        rich: "<ruby>利簋<rt>lì guǐ</rt></ruby>铭文为夏商周断代工程确立了重要时间坐标。<span class='pause-mark'>/</span>经天文推算，结合文献与考古实证，<span class='pause-mark'>/</span>最终确定<span class='stress'>公元前 1046 年</span>为武王克商之年。<span class='pause-mark'>//</span>这是刻在青铜上的<span class='stress'>时间密码</span>，是华夏文明的<span class='stress'>关键锚点</span>。",
+        dir: "<strong>终章盖棺定论（厚重余韵）</strong>：严查“利簋 lì guǐ”；07:57.5 笃定收口，把最后 2.5 秒彻底留给单一清越编钟泛音自然衰减（小津式余味定输赢）。"
+      }
+    ];
+
+    const PRON_LIST = [
+      { word: "妇妌", py: "fù jǐng", warn: "高危易错！必读三声 jǐng，严禁误读为 jìng（静）或 jīng（精）。全片共出现 3 次（V05/V10）。" },
+      { word: "利簋", py: "lì guǐ", warn: "高危易错！“簋”必读三声 guǐ（同“轨”），严禁误读为 kuì 或 guī。全片共出现 2 次（V25/V26）。" },
+      { word: "鸮 / 鸮尊", py: "xiāo / xiāo zūn", warn: "高危易错！必读一声 xiāo（同“肖/消”），严禁误读为 hào（号）。妇好誓师首字重读（V12）。" },
+      { word: "称尔戈，比尔干", py: "chēng / bǐ / gān", warn: "《尚书·牧誓》古音红线！“称”读 chēng（举起）；“比”读三声 bǐ（列齐，禁读 bì）；“干”读 gān（盾牌）。" },
+      { word: "予其誓", py: "yǔ qí shì", warn: "“予”在此作第一人称“我”解，按《尚书》通行规范读三声 yǔ，铿锵停顿后落地。" },
+      { word: "偃师", py: "yǎn shī", warn: "河南偃师（二里头所在地），必读三声 yǎn，严禁误读为 yān（烟）。" },
+      { word: "坩埚", py: "gān guō", warn: "熔铜器皿，均读一声 gān guō，切勿读成 gàn 或 gān wō（V03 工头急促台词易含糊）。" },
+      { word: "种黍", py: "zhòng shǔ", warn: "北方古老旱地谷物（黄米），必读三声 shǔ（V05 老工匠）。" },
+      { word: "饕餮纹", py: "tāo tiè wén", warn: "分别读一声 tāo、四声 tiè（画面字幕及扩展解说高频词）。" },
+      { word: "纵目面具", py: "zòng mù", warn: "三星堆柱状凸目专称，“纵”读四声 zòng，清脆利落（V19）。" },
+      { word: "岁星 / 甲子", py: "suì xīng / jiǎ zǐ", warn: "木星古称岁星，与甲子日清晨共同确立公元前 1046 断代坐标，重音须清晰。" },
+      { word: "大邑商 / 吉金", py: "dà yì shāng / jí jīn", warn: "“邑”读四声 yì；“吉金”为商周对青铜美称，“吉”二声咬字温润沉静（V25）。" }
+    ];
+
+    const CAST_PROFILES = [
+      { role: "主旁白", title: "全片历史总述（厚重男声）", desc: "参考国家宝藏 / 央视大型文博纪录片资深男声：38–50 岁低中音质感，共鸣温厚克制、严禁油腻朗诵腔与晚会腔。情绪随七幕流转：开篇宏阔 → 后母戊鼎柔软亲情 → 四羊方尊亲切伴触 → 三星堆深邃敬畏 → 牧野紧迫 → 终章笃定。" },
+      { role: "史官·利", title: "西周史官 · 第一人称双阶段（青年→沧桑）", desc: "一人分饰两重时间状态：牧野拂晓（V21）为 25–30 岁精悍激动青年史官，贴耳近声；终章利簋画外音（V25）为历经沧桑回望一生的深沉低语，极度真挚克制，是全片最催泪的情感锚点。" },
+      { role: "妇好", title: "商代第一女战神（英气女中音）", desc: "30 岁左右大气英气女中音，吐字如金石相击、气沉丹田，兼具王后威严与统帅杀伐决断，绝不可娇柔或尖锐。V12 需有在旷野高台面向千军喊话的真实投射力。" },
+      { role: "周武王", title: "开国雄主（威严男低中音）", desc: "40 岁左右沉雄厚重的帝王声线，自带以小克大、孤注一掷的铁血决绝。V23 仅 12 字但必须一锤定音，建议棚内实录远近双麦（近麦保厚度、远麦保高台旷野气场）。" },
+      { role: "工头 / 老工匠 / 小工匠", title: "殷墟铸坊戏剧三人组", desc: "工头（35–42 岁粗犷沙哑、语速急但有担当）；老工匠（60 岁沧桑温暖、节奏沉稳如定海神针）；小工匠（13–15 岁清亮少年音、从怯懦发颤到铿锵觉醒，严禁油滑）。强烈建议三人同棚搭戏实录，碰撞最真实的呼吸和搭词节奏！" },
+      { role: "亲兵 / 服务语音 / 群声", title: "功能与氛围声线", desc: "亲兵（22 岁热血微喘、激动恭敬）；服务语音（温柔明媚亲切女声，专为带娃家庭与老人设计，绝非冷冰冰 AI 客服腔）；群声（6–8 名男配音分轨叠录 3 遍打造千军声墙）。" }
+    ];
+
+    const MUSIC_CUES = [
+      { act: "第一幕 · 泥土化金", tc: "00:00 – 01:00", start: 0, end: 60, bpm: "62 → 84 BPM<br/>D 宫微调", energy: 45, bpmVal: 72,
+        inst: "单音石磬、低音古编钟、低沉大提琴长音、微弱陶埙底韵",
+        arc: "00:00 极克制空灵单音起势 → 00:26 铜液倾泻低音铜管/弦乐托起热浪 → 00:36 脱范现青铜爵时清越青铜钟泛音绽放 → 00:53 拉远入殷墟巨坊接入沉重节奏型。",
+        mix: "00:01–00:29 中频(500Hz–2.5kHz)压低 -6dB 给主旁白让路；00:30–00:59 人声空白区大胆推出交响铜器质感。" },
+      { act: "第二幕 · 以器载情", tc: "01:00 – 02:15", start: 60, end: 135, bpm: "92 → 60 BPM<br/>D 羽调", energy: 68, bpmVal: 78,
+        inst: "商代编铙、陶埙、皮革低音鼓点、中提琴/大提琴温情独奏",
+        arc: "01:02–01:41 极低隐的鼓风脉动衬底烘托危机 → 01:41 八槽合浇推升全幕峰值 → 01:48 后母戊鼎升起转为宏大庄严铜鸣 → 02:02 铭文亮起化作极其温柔的大提琴与石磬母爱主题。",
+        mix: "01:02–01:41 三人对白期配乐极度克制仅留 120Hz 以下底噪脉动，绝不抢对白情绪。" },
+      { act: "第三幕 · 巾帼威仪", tc: "02:15 – 03:30", start: 135, end: 210, bpm: "76 → 112 → 68<br/>G 商调", energy: 84, bpmVal: 96,
+        inst: "战鼓、号角（骨角/低音铜管）、尖啸弦乐滑音、清冽玉磬、编钟",
+        arc: "02:23 肃杀冷风弦乐铺陈 → 02:35 妇好誓师铜管抬升 → 02:44 千军呐喊与鸱鸮升空推至 112 BPM 激昂冲锋段 → 02:58 战后静落 → 03:08 玉凤现身唯一清冽玉磬单音 → 03:16 化鸮尊转雄浑编钟。",
+        mix: "02:35–02:43 妇好独白期鼓点做节拍留白，喊完立刻全员轰入！" },
+      { act: "第四幕 · 文脉星火", tc: "03:30 – 04:25", start: 210, end: 265, bpm: "72 → 58 BPM<br/>C 徴调→暗羽", energy: 52, bpmVal: 64,
+        inst: "骨笛、古琴泛音、极轻金石风铃、夜祭沉浑皮鼓",
+        arc: "03:30 暖金麦浪配清灵骨笛与舒展弦乐 → 03:52 入夜火堆转幽玄低音皮鼓 → 【04:07 全片第 1 次全场抽空死寂 0.5 秒！】→ 04:08 “卜”裂后沉浑祭鼓渐起。",
+        mix: "严格锁死 04:07.0–04:07.5 全频彻底抽空（-∞ dB），把全部能量留给 04:08 裂甲“卜”声！" },
+      { act: "第五幕 · 繁星交辉", tc: "04:25 – 06:10", start: 265, end: 370, bpm: "64 → 78 BPM<br/>泛音无界→低鼓", energy: 66, bpmVal: 70,
+        inst: "空间化编钟泛音群、温润古琴、古蜀巴蜀洞箫与空灵长笛、远鼓心跳",
+        arc: "04:25 青铜星图空灵浩瀚展开 → 04:42–05:32 四羊方尊 50s 实触期改极温润清澈的古琴伴奏不打扰触觉专注 → 05:33 三星堆切入神秘空灵洞箫 → 05:54 商周过渡旁白处 60→85 BPM 低音战鼓心跳渐密！",
+        mix: "04:42–05:32 声压严控偏轻柔，确保老人小孩清晰听见旁白与 05:24 服务收手提示。" },
+      { act: "第六幕 · 天命更迭", tc: "06:10 – 07:15", start: 370, end: 435, bpm: "88 → 136 BPM<br/>E 商英雄调", energy: 98, bpmVal: 132,
+        inst: "全编制中国大鼓群、大型编钟、高亢弦乐快弓、低音铜管齐奏",
+        arc: "06:14 破晓岁星清越星辉弦乐闪现 → 06:22 战鼓逼近 → 06:29 武王牧誓三停三起 → 06:34–07:10 全片 136 BPM 巅峰战车交响轰鸣 → 【07:12 巅峰骤收化作单一绵长西周大编钟余音！】",
+        mix: "06:36–07:10 人声彻底清空，配乐与 360° 马蹄战车音效满血释放！" },
+      { act: "第七幕 · 时间密码", tc: "07:15 – 08:00", start: 435, end: 480, bpm: "56 BPM<br/>D 宫宽广回归", energy: 60, bpmVal: 56,
+        inst: "大编钟、古琴、温暖大提琴与宽广弦乐群（呼应第一幕核心动机）",
+        arc: "07:15 钟声余韵中渐起极温柔的古琴与弦乐托住史官利独白 → 07:43 铭文化星与岁星交辉处交响情绪崇高绽放 → 07:57.5 唯留单一清越编钟泛音自然归寂 2.5–3s（小津式余味）。",
+        mix: "首尾主题旋律闭环（复现第一幕 D 宫四音青铜动机），留住全厅 300 人出舱前的静默感动。" }
+    ];
+
+    const SFX_LIST = [
+      { tc: "00:14.0", name: "外范四块径向剥离 (S01)", pos: "正前 0°, 距 1.7m (向四方轻散)", foley: "湿润细腻陶泥精密分离的阻尼摩擦声 + 极轻陶石“咔嗒”定位脆响。", lfe: "座椅微颤 15% / 28Hz (0.8s)" },
+      { tc: "00:26.0–00:33.0", name: "1100°C 炽铜浇铸空腔 (S02)", pos: "右上 +22° 倾泻至正中 0°", foley: "重液态金属奔涌低咆 + 陶腔受热“嘶嘶”沸腾声 + 空气热浪呼鸣。", lfe: "38°C 温和热风 + 座椅 20% / 18Hz 持续低震" },
+      { tc: "00:35.0–00:37.5", name: "陶范三连崩裂脱范 (S02·W1)", pos: "居中 0° → 360° 四周炸散", foley: "三拍递进清脆焙烧陶壳裂响 + 炽热蒸汽猛喷 + 新铸青铜器金属清鸣泛音。", lfe: "硬锁帧 3 连脆震：25%→45%→60% / 40Hz" },
+      { tc: "00:51.0", name: "商工重锤砸裂左坯 (S03)", pos: "左前 -18°, 距 1.5m", foley: "硬木槌扎实砸裂厚陶壳“砰！”实响 + 碎陶渣撒落木案颗粒声 → 瞬间拓宽为 360° 百人作坊全景底噪。", lfe: "单点脆震 40% / 35Hz (0.25s) + 37°C 作坊热浪" },
+      { tc: "01:41.0–01:47.0", name: "八槽赤龙同步合浇巨鼎 (S05)", pos: "下方 -12° 环绕 360° 汇入中心", foley: "百人整齐号子“起——落——” + 多股炽热铜液冲入地坑“嘶啦”滚沸巨响 + 冲天蒸汽啸鸣。", lfe: "39°C 炽热拂面 + 地坑沉闷低震 50% / 22Hz" },
+      { tc: "02:44.0–02:54.0", name: "鸱鸮穿云掠镜与黄沙风暴 (S08·W3)", pos: "Object 轨：左后 -135° → 右耳 +30° 擦掠 → 正上 +18°", foley: "穿云猛禽枭鸣 + 硕大羽翼近耳拍风声 → 千军齐吼“胜！” → 漫天金沙滚滚呼啸压境。", lfe: "举矛 65%/26Hz 重震 → 升空 5.0m/s 强风 + 55Hz 沙粒微颤" },
+      { tc: "04:08.0", name: "炽木灼骨“剥（卜）！”裂甲 (S11)", pos: "正前 0°, 极近距 1.1m（此前 0.5s 全场死寂）", foley: "篝火微噼啪骤停 0.5s → 一声极脆、穿透颅骨的干燥兽骨热裂爆响“剥（卜）！” + 微弱焦烟嘶声。", lfe: "最高精度硬锁帧 (±10ms)：45% / 60Hz (0.3s 脆震) + 微热气" },
+      { tc: "04:42–05:32", name: "四羊方尊物理密格升降与金砂流散 (S13)", pos: "正前臂长 0.6m → 收手后流向左侧 -45°", foley: "柔和低频星尘聚拢音（温柔掩蔽现实密格机械电机细微声响！）→ 收手后细腻金砂流散牵引视线向左西移。", lfe: "全程座椅 0% 绝对静止防磕手；04:39 预启 / 05:27 红外回收" },
+      { tc: "06:16.0 & 06:34–07:12", name: "岁星天顶破云 & 牧野先锋战车冲锋 (S15–S16)", pos: "岁星：天顶 +75° 仰角 ｜ 战车：下缘车轮 + 两侧 ±70° 流矢", foley: "朔风吹云 → 天顶清越星辉震鸣（声音牵引全厅仰头！）→ 晨雾散尽 → 360° 震撼战鼓、四马急促马蹄踏霜、青铜车轴轧地吱呀、左右远侧安全流矢呼啸 → 07:12 一声大编钟归寂。", lfe: "全片峰值：三声杀 40→55→75% → 冲锋 55–70%/22–32Hz + 5.5m/s 迎面强风" }
+    ];
+
+    let activeRole = "ALL";
+    let activeAlt = "A";
+    let boothMode = false;
+    const STORAGE_KEY = "guobo_xsz_vo_recorded_v1";
+    let recordedMap = {};
+    try { recordedMap = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); } catch (e) { recordedMap = {}; }
+
+    function fmtTc(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec - m * 60;
+      const whole = Math.floor(s);
+      const frac = Math.round((s - whole) * 10);
+      return `${String(m).padStart(2, "0")}:${String(whole).padStart(2, "0")}${frac ? "." + frac : ""}`;
+    }
+
+    function countChineseChars(str) {
+      const cleaned = str.replace(/（[^）]*）/g, "");
+      const m = cleaned.match(/[\u4e00-\u9fa50-9]/g);
+      return m ? m.length : 0;
+    }
+
+    function showToast(msg) {
+      const el = document.getElementById("toast");
+      el.textContent = msg;
+      el.classList.add("show");
+      setTimeout(() => el.classList.remove("show"), 2400);
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === tabId));
+      document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.id === "panel-" + tabId));
+    }
+
+    function flashAndScroll(el) {
+      if (!el) return;
+      el.classList.remove("jump-highlight");
+      void el.offsetWidth;
+      el.classList.add("jump-highlight");
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    function jumpToVoiceCue(cueId) {
+      switchTab("vo");
+      if (activeRole !== "ALL") {
+        activeRole = "ALL";
+        renderRoleChips();
+        renderCueList();
+      }
+      const cue = VOICE_CUES.find(c => c.id === cueId);
+      requestAnimationFrame(() => {
+        const target = document.getElementById("cue-" + cueId);
+        flashAndScroll(target);
+        if (cue) showToast(`已定位至 ${cue.id} · ${cue.role}（${fmtTc(cue.start)} – ${fmtTc(cue.end)}）`);
+      });
+    }
+
+    function jumpToMusicAct(actIdx) {
+      const m = MUSIC_CUES[actIdx];
+      if (!m) return;
+      switchTab("music");
+      requestAnimationFrame(() => {
+        const row = document.getElementById("music-row-" + actIdx);
+        flashAndScroll(row);
+        showToast(`已跳转至配乐总谱：${m.act}（${m.tc}）`);
+      });
+    }
+
+    function jumpToSfxRow(sfxIdx) {
+      const x = SFX_LIST[sfxIdx];
+      if (!x) return;
+      switchTab("sfx");
+      requestAnimationFrame(() => {
+        const row = document.getElementById("sfx-row-" + sfxIdx);
+        flashAndScroll(row);
+        showToast(`已跳转至 4D 音效锁帧：${x.tc} ${x.name}`);
+      });
+    }
+
+    function getActIdxForCue(c) {
+      const idx = MUSIC_CUES.findIndex(m => c.start >= m.start && c.start < m.end);
+      return idx >= 0 ? idx : MUSIC_CUES.length - 1;
+    }
+
+    function getFirstShotCode(shotStr) {
+      const m = String(shotStr || "").match(/S\d{2}/);
+      return m ? m[0] : "S01";
+    }
+
+    function renderAudioTimeline() {
+      const laneVO = document.getElementById("laneVO");
+      const laneDLG = document.getElementById("laneDLG");
+      const laneMUS = document.getElementById("laneMUS");
+      const laneSFX = document.getElementById("laneSFX");
+
+      laneVO.innerHTML = VOICE_CUES.filter(c => c.type === "VO").map(c => {
+        const l = (c.start / TOTAL_DUR) * 100;
+        const w = Math.max(((c.end - c.start) / TOTAL_DUR) * 100, 1.4);
+        const bg = c.role === "服务语音" ? "#246751" : "#9E3020";
+        return `<div class="track-clip" data-jump-vo="${c.id}" style="left:${l}%;width:${w}%;background:${bg};" title="点击跳转台词：${c.id} ${c.role} (${fmtTc(c.start)}-${fmtTc(c.end)})">${c.id}</div>`;
+      }).join("");
+
+      laneDLG.innerHTML = VOICE_CUES.filter(c => c.type === "DLG").map(c => {
+        const l = (c.start / TOTAL_DUR) * 100;
+        const w = Math.max(((c.end - c.start) / TOTAL_DUR) * 100, 1.3);
+        return `<div class="track-clip" data-jump-vo="${c.id}" style="left:${l}%;width:${w}%;background:#A87C33;" title="点击跳转台词：${c.id} ${c.role} (${fmtTc(c.start)}-${fmtTc(c.end)})">${c.id}</div>`;
+      }).join("");
+
+      const musColors = ["#574836", "#7B3A1E", "#9E3020", "#4A3C2C", "#246751", "#1B4D6B", "#36455A"];
+      laneMUS.innerHTML = MUSIC_CUES.map((m, i) => {
+        const l = (m.start / TOTAL_DUR) * 100;
+        const w = ((m.end - m.start) / TOTAL_DUR) * 100;
+        return `<div class="track-clip" data-jump-mus="${i}" style="left:${l}%;width:${w}%;background:${musColors[i]};" title="点击跳转配乐总谱：${m.act} (${m.tc})">${m.act.split("·")[0]}</div>`;
+      }).join("");
+
+      const sfxBlocks = [
+        { label: "外范剥离", s: 14, d: 8, idx: 0 },
+        { label: "炽铜浇铸", s: 26, d: 7, idx: 1 },
+        { label: "脱范三震", s: 35, d: 6, idx: 2 },
+        { label: "砸范", s: 51, d: 5, idx: 3 },
+        { label: "合浇热浪", s: 101, d: 10, idx: 4 },
+        { label: "枭鸣黄沙", s: 164, d: 12, idx: 5 },
+        { label: "0.5s静→卜!", s: 247, d: 8, idx: 6 },
+        { label: "密格实触静场", s: 282, d: 50, idx: 7 },
+        { label: "牧野战车巅峰LFE", s: 376, d: 56, idx: 8 }
+      ];
+      laneSFX.innerHTML = sfxBlocks.map(b => `
+        <div class="track-clip" data-jump-sfx="${b.idx}" style="left:${(b.s/TOTAL_DUR)*100}%;width:${Math.max((b.d/TOTAL_DUR)*100, 2.2)}%;background:#246751;" title="点击跳转4D音效锁帧：${b.label}">${b.label}</div>
+      `).join("");
+
+      document.querySelectorAll(".track-clip[data-jump-vo]").forEach(el => {
+        el.addEventListener("click", () => jumpToVoiceCue(el.dataset.jumpVo));
+      });
+      document.querySelectorAll(".track-clip[data-jump-mus]").forEach(el => {
+        el.addEventListener("click", () => jumpToMusicAct(Number(el.dataset.jumpMus)));
+      });
+      document.querySelectorAll(".track-clip[data-jump-sfx]").forEach(el => {
+        el.addEventListener("click", () => jumpToSfxRow(Number(el.dataset.jumpSfx)));
+      });
+    }
+
+    function renderRoleChips() {
+      const container = document.getElementById("roleChips");
+      const counts = { ALL: VOICE_CUES.length };
+      VOICE_CUES.forEach(c => { counts[c.role] = (counts[c.role] || 0) + 1; });
+
+      container.innerHTML = Object.keys(ROLE_META).map(r => `
+        <button class="role-chip ${r === activeRole ? "active" : ""}" data-role="${r}">
+          ${ROLE_META[r].label.split("（")[0]} (${counts[r] || 0})
+        </button>
+      `).join("");
+
+      container.querySelectorAll(".role-chip").forEach(btn => {
+        btn.addEventListener("click", () => {
+          activeRole = btn.dataset.role;
+          renderRoleChips();
+          renderCueList();
+        });
+      });
+    }
+
+    function updateStats() {
+      let totalChars = 0;
+      let done = 0;
+      VOICE_CUES.forEach(c => {
+        const txt = c.isAlt ? TRANSITION_ALTS[activeAlt].plain : c.plain;
+        totalChars += countChineseChars(txt);
+        if (recordedMap[c.id]) done++;
+      });
+      document.getElementById("totalCharsSub").textContent = `全片共 ${totalChars} 字（平均 3.9 字/秒）`;
+      document.getElementById("progressReadout").textContent = `棚内已录勾选：${done} / ${VOICE_CUES.length}`;
+    }
+
+    function renderCueList() {
+      const list = document.getElementById("cueList");
+      const filtered = activeRole === "ALL" ? VOICE_CUES : VOICE_CUES.filter(c => c.role === activeRole);
+
+      list.innerHTML = filtered.map(c => {
+        const dur = +(c.end - c.start).toFixed(1);
+        const plainTxt = c.isAlt ? TRANSITION_ALTS[activeAlt].plain : c.plain;
+        const richTxt = c.isAlt ? TRANSITION_ALTS[activeAlt].rich : c.rich;
+        const chars = countChineseChars(plainTxt);
+        const cps = (chars / dur).toFixed(1);
+        const isFast = Number(cps) > 4.6;
+        const color = (ROLE_META[c.role] && ROLE_META[c.role].color) || "#231C14";
+        const isDone = !!recordedMap[c.id];
+
+        const altSwitcher = c.isAlt ? `
+          <div class="cue-alt-bar">
+            ${["A", "B", "C"].map(k => `
+              <button class="alt-btn ${k === activeAlt ? "active" : ""}" data-alt="${k}">${TRANSITION_ALTS[k].name}</button>
+            `).join("")}
+          </div>
+        ` : "";
+
+        return `
+          <article class="cue-item ${isDone ? "recorded" : ""}" id="cue-${c.id}">
+            <div class="cue-check-wrap">
+              <input type="checkbox" class="cue-check" data-id="${c.id}" ${isDone ? "checked" : ""} title="标记为已录过审" />
+            </div>
+            <div class="cue-meta-col tabular-nums">
+              <div class="cue-id">${c.id}</div>
+              <div class="cue-tc">${fmtTc(c.start)} – ${fmtTc(c.end)}</div>
+              <div class="cue-dur">时长 ${dur}s ｜ ${chars} 字</div>
+              <span class="role-tag" style="color:${color};">${c.role}</span>
+            </div>
+            <div class="cue-body-col">
+              <div class="cue-scene-line">
+                ${c.act} ｜ 对应分镜 ${c.shot}
+                <span class="inline-jump-links">
+                  <button type="button" class="mini-jump" data-go-mus="${getActIdxForCue(c)}">本幕配乐 →</button>
+                  <a class="mini-jump" href="./夏商西周_4D_VR分镜导演审片工作台.html#${getFirstShotCode(c.shot)}">对应分镜 ${getFirstShotCode(c.shot)} →</a>
+                </span>
+              </div>
+              ${altSwitcher}
+              <div class="cue-line-text">${richTxt}</div>
+              <div class="cue-direction">${c.dir}</div>
+            </div>
+            <div class="cue-visual-col">
+              <img class="cue-thumb" src="${c.img}" alt="${c.shot}" loading="lazy" onerror="this.style.display='none'" />
+              <div class="pace-badge tabular-nums ${isFast ? "fast" : ""}">
+                语速 ${cps} 字/秒 ${isFast ? "· 紧促" : "· 舒适"}
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      list.querySelectorAll(".cue-check").forEach(cb => {
+        cb.addEventListener("change", () => {
+          recordedMap[cb.dataset.id] = cb.checked;
+          try { localStorage.setItem(STORAGE_KEY, JSON.stringify(recordedMap)); } catch (e) {}
+          document.getElementById("cue-" + cb.dataset.id).classList.toggle("recorded", cb.checked);
+          updateStats();
+        });
+      });
+
+      list.querySelectorAll(".alt-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          activeAlt = btn.dataset.alt;
+          renderCueList();
+          updateStats();
+        });
+      });
+
+      list.querySelectorAll("[data-go-mus]").forEach(btn => {
+        btn.addEventListener("click", () => jumpToMusicAct(Number(btn.dataset.goMus)));
+      });
+
+      updateStats();
+    }
+
+    function renderPronAndCast() {
+      document.getElementById("pronGrid").innerHTML = PRON_LIST.map(p => `
+        <div class="pron-card">
+          <div class="pron-word">${p.word}</div>
+          <div class="pron-py">${p.py}</div>
+          <div class="pron-warn">${p.warn}</div>
+        </div>
+      `).join("");
+
+      document.getElementById("castGrid").innerHTML = CAST_PROFILES.map(cp => {
+        const matchRoles = cp.role.split(" / ");
+        const cues = VOICE_CUES.filter(c => matchRoles.includes(c.role));
+        const words = cues.reduce((acc, c) => acc + countChineseChars(c.isAlt ? TRANSITION_ALTS[activeAlt].plain : c.plain), 0);
+        return `
+          <div class="cast-card">
+            <div class="cast-title">${cp.role} · ${cp.title}</div>
+            <div class="cast-stats tabular-nums">共 ${cues.length} 条 Cue ｜ 约 ${words} 字</div>
+            <div class="cast-desc">${cp.desc}</div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderMusicPanel() {
+      document.getElementById("musicTableBody").innerHTML = MUSIC_CUES.map((m, idx) => {
+        const firstCue = VOICE_CUES.find(c => c.start >= m.start && c.start < m.end);
+        const jumpCueBtn = firstCue
+          ? `<div style="margin-top:8px;"><button type="button" class="mini-jump" data-mus-to-vo="${firstCue.id}">查看本幕台词 (${firstCue.id}) →</button></div>`
+          : "";
+        return `
+        <tr id="music-row-${idx}">
+          <td><strong>${m.act}</strong><br/><span style="color:#7D6D58;font-size:12px;">${m.tc}</span>${jumpCueBtn}</td>
+          <td>${m.bpm}</td>
+          <td>${m.inst}</td>
+          <td>${m.arc}</td>
+          <td>${m.mix}</td>
+        </tr>`;
+      }).join("");
+
+      document.querySelectorAll("[data-mus-to-vo]").forEach(btn => {
+        btn.addEventListener("click", () => jumpToVoiceCue(btn.dataset.musToVo));
+      });
+
+      const svg = document.getElementById("musicCurveSvg");
+      const W = 1200, H = 148, padT = 18, padB = 24, plotH = H - padT - padB;
+      const toX = s => (s / TOTAL_DUR) * W;
+      const toY = v => padT + plotH - (v / 100) * plotH;
+
+      const ePts = MUSIC_CUES.map(m => `${toX((m.start + m.end)/2).toFixed(1)},${toY(m.energy).toFixed(1)}`).join(" ");
+      const bPts = MUSIC_CUES.map(m => `${toX((m.start + m.end)/2).toFixed(1)},${toY((m.bpmVal / 145) * 100).toFixed(1)}`).join(" ");
+
+      let grid = "";
+      [25, 50, 75, 100].forEach(v => {
+        const y = toY(v).toFixed(1);
+        grid += `<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#C7B99E" stroke-width="0.8" />`;
+      });
+
+      const drop1X = toX(247).toFixed(1);
+      const drop2X = toX(432).toFixed(1);
+
+      const labels = MUSIC_CUES.map((m, idx) => {
+        const cx = toX((m.start + m.end) / 2).toFixed(1);
+        return `
+          <g class="svg-act-node" data-svg-mus="${idx}" style="cursor:pointer;">
+            <circle cx="${cx}" cy="${toY(m.energy).toFixed(1)}" r="5" fill="#9E3020" />
+            <circle cx="${cx}" cy="${toY((m.bpmVal / 145) * 100).toFixed(1)}" r="4" fill="#1B4D6B" />
+            <text x="${cx}" y="${H - 6}" text-anchor="middle" fill="#231C14" font-family="PingFang SC, sans-serif" font-size="11.5" font-weight="600">${m.act.split("·")[0]}</text>
+          </g>
+        `;
+      }).join("");
+
+      svg.innerHTML = `
+        ${grid}
+        <line x1="${drop1X}" y1="${padT}" x2="${drop1X}" y2="${H - padB}" stroke="#246751" stroke-dasharray="4,3" stroke-width="1.5" />
+        <text x="${Number(drop1X) + 5}" y="${padT + 11}" fill="#246751" font-family="SF Mono, Menlo, monospace" font-size="10.5">04:07 抽空0.5s→卜!</text>
+        <line x1="${drop2X}" y1="${padT}" x2="${drop2X}" y2="${H - padB}" stroke="#246751" stroke-dasharray="4,3" stroke-width="1.5" />
+        <text x="${Number(drop2X) - 110}" y="${padT + 11}" fill="#246751" font-family="SF Mono, Menlo, monospace" font-size="10.5">07:12 冲锋归大编钟</text>
+        <polyline fill="none" stroke="#9E3020" stroke-width="2.4" points="${ePts}" />
+        <polyline fill="none" stroke="#1B4D6B" stroke-width="2" points="${bPts}" />
+        ${labels}
+      `;
+
+      svg.querySelectorAll("[data-svg-mus]").forEach(g => {
+        g.addEventListener("click", () => {
+          const row = document.getElementById("music-row-" + g.dataset.svgMus);
+          flashAndScroll(row);
+        });
+      });
+    }
+
+    function renderSfxPanel() {
+      const sfxAnchorCues = ["V02", "V02", "V02", "V03", "V09", "V13", "V15", "V17", "V21"];
+      document.getElementById("sfxTableBody").innerHTML = SFX_LIST.map((x, idx) => {
+        const cueId = sfxAnchorCues[idx] || "V01";
+        return `
+        <tr id="sfx-row-${idx}">
+          <td><strong>${x.tc}</strong><div style="margin-top:6px;"><button type="button" class="mini-jump" data-sfx-to-vo="${cueId}">同镜台词 (${cueId}) →</button></div></td>
+          <td><strong>${x.name}</strong></td>
+          <td>${x.pos}</td>
+          <td>${x.foley}</td>
+          <td>${x.lfe}</td>
+        </tr>`;
+      }).join("");
+
+      document.querySelectorAll("[data-sfx-to-vo]").forEach(btn => {
+        btn.addEventListener("click", () => jumpToVoiceCue(btn.dataset.sfxToVo));
+      });
+    }
+
+    function buildPlainExport(roleFilter) {
+      const cues = roleFilter === "ALL" ? VOICE_CUES : VOICE_CUES.filter(c => c.role === roleFilter);
+      const lines = [
+        "《夏商西周时期·礼乐之基，青铜之魂》4D VR 配音台本（时间码锁定版 08:00）",
+        `筛选角色：${ROLE_META[roleFilter].label} ｜ 共 ${cues.length} 条`,
+        "重点正音红线：妇妌(fù jǐng) · 利簋(lì guǐ) · 鸮(xiāo) · 偃师(yǎn shī) · 坩埚(gān guō) · 称尔戈(chēng) · 比尔干(bǐ ěr gān) · 予其誓(yǔ)",
+        "================================================================",
+        ""
+      ];
+      cues.forEach(c => {
+        const txt = c.isAlt ? TRANSITION_ALTS[activeAlt].plain : c.plain;
+        const dur = +(c.end - c.start).toFixed(1);
+        lines.push(`[${c.id}] ${fmtTc(c.start)} – ${fmtTc(c.end)} (${dur}s) | ${c.role} | ${c.act} (${c.shot})`);
+        lines.push(`台词：${txt}`);
+        lines.push(`导演提示：${c.dir.replace(/<[^>]+>/g, "")}`);
+        lines.push("");
+      });
+      return lines.join("\n");
+    }
+
+    // 导航切换
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => switchTab(btn.dataset.tab));
+    });
+
+    // 棚内大字提词开关
+    document.getElementById("boothToggleBtn").addEventListener("click", e => {
+      boothMode = !boothMode;
+      document.body.classList.toggle("booth-mode", boothMode);
+      e.target.classList.toggle("active-toggle", boothMode);
+      e.target.textContent = boothMode ? "退出大字提词模式" : "棚内大字提词模式";
+    });
+
+    // 一键复制当前筛选角色台词
+    document.getElementById("copyRoleBtn").addEventListener("click", async () => {
+      const content = buildPlainExport(activeRole);
+      try {
+        await navigator.clipboard.writeText(content);
+        showToast(`已复制「${ROLE_META[activeRole].label}」台词至剪贴板`);
+      } catch (err) {
+        showToast("浏览器禁止剪贴板写入，请点击右侧导出 .TXT");
+      }
+    });
+
+    // 一键导出纯文本配音台本
+    document.getElementById("exportTxtBtn").addEventListener("click", () => {
+      const content = buildPlainExport(activeRole);
+      const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `夏商西周_配音台本_${activeRole === "ALL" ? "全角色" : activeRole}.txt`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast("已导出纯文本配音台本 .TXT");
+    });
+
+    function handleInitialHash() {
+      const h = decodeURIComponent(window.location.hash || "").replace(/^#/, "");
+      if (!h) return;
+      if (/^cue-V\d{2}$/i.test(h)) {
+        jumpToVoiceCue(h.slice(4).toUpperCase());
+      } else if (/^V\d{2}$/i.test(h)) {
+        jumpToVoiceCue(h.toUpperCase());
+      } else if (/^music-(\d+)$/i.test(h)) {
+        jumpToMusicAct(Number(h.split("-")[1]));
+      } else if (/^sfx-(\d+)$/i.test(h)) {
+        jumpToSfxRow(Number(h.split("-")[1]));
+      } else if (["vo", "pron", "music", "sfx"].includes(h)) {
+        switchTab(h);
+      }
+    }
+
+    renderAudioTimeline();
+    renderRoleChips();
+    renderCueList();
+    renderPronAndCast();
+    renderMusicPanel();
+    renderSfxPanel();
+    handleInitialHash();
+    window.addEventListener("hashchange", handleInitialHash);
+  </script>
+</body>
+</html>

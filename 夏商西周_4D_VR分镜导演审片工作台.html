@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>夏商西周·礼乐之基，青铜之魂｜4D VR 一镜到底图文分镜导演审片台 V2.0</title>
+  <style>
+    /* Erica Aesthetic Canon — 宋画宣绢 × 朱砂石青框景 (Song Scroll & Framed Pavilion) */
+    :root {
+      --color-ground: #F2ECE1;
+      --color-surface: #E7DFCE;
+      --color-surface-deep: #D8CCB4;
+      --color-ink: #231C14;
+      --color-ink-secondary: #574836;
+      --color-ink-muted: #7D6D58;
+      --color-hairline: #C7B99E;
+      --color-rule-strong: #4A3C2C;
+      --color-accent: #9E3020;
+      --color-accent-azurite: #1B4D6B;
+      --color-accent-malachite: #246751;
+      --color-accent-gold: #A87C33;
+      --font-display: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;
+      --font-body: "PingFang SC", "Hiragino Sans GB", "Songti SC", sans-serif;
+      --font-mono: "SF Mono", Menlo, Consolas, monospace;
+      --radius-none: 0px;
+      --radius-sm: 2px;
+      --space-xs: 8px;
+      --space-sm: 16px;
+      --space-md: 28px;
+      --space-lg: 48px;
+      --space-xl: 72px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    ::selection { background: var(--color-accent); color: #F2ECE1; }
+
+    body {
+      background-color: var(--color-ground);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    table, .tabular-nums { font-variant-numeric: tabular-nums; }
+
+    .page-shell {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: var(--space-lg) var(--space-md) var(--space-xl);
+    }
+
+    /* 卷首题签与KPI标尺 */
+    .masthead {
+      border-top: 2px solid var(--color-rule-strong);
+      border-bottom: 1px solid var(--color-hairline);
+      padding: var(--space-md) 0;
+      margin-bottom: var(--space-lg);
+    }
+
+    .masthead-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--color-hairline);
+      margin-bottom: 18px;
+    }
+
+    .doc-serial {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--color-ink-muted);
+      letter-spacing: 0.06em;
+    }
+
+    .seal-mark {
+      display: inline-block;
+      border: 1px solid var(--color-accent);
+      color: var(--color-accent);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 8px;
+      letter-spacing: 0.14em;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 1.24;
+      color: var(--color-ink);
+      margin-bottom: 12px;
+    }
+
+    .lead-summary {
+      max-width: 70ch;
+      color: var(--color-ink-secondary);
+      font-size: 15.5px;
+      line-height: 1.78;
+      margin-bottom: 22px;
+    }
+
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border-top: 1px solid var(--color-hairline);
+      padding-top: 16px;
+      gap: 18px;
+    }
+
+    .kpi-item {
+      border-left: 1px solid var(--color-hairline);
+      padding-left: 14px;
+    }
+
+    .kpi-item:first-child { border-left: 2px solid var(--color-accent); }
+    .kpi-label { font-size: 12px; color: var(--color-ink-muted); margin-bottom: 4px; }
+    .kpi-val { font-family: var(--font-mono); font-size: 20px; font-weight: 600; color: var(--color-ink); line-height: 1.2; }
+    .kpi-sub { font-size: 12px; color: var(--color-ink-secondary); margin-top: 4px; }
+
+    /* 主导航栏 */
+    .tab-bar {
+      display: flex;
+      border-bottom: 1.5px solid var(--color-rule-strong);
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      appearance: none;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      padding: 12px 20px;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-ink-secondary);
+      cursor: pointer;
+      margin-bottom: -1.5px;
+    }
+
+    .tab-btn:hover { color: var(--color-ink); background-color: var(--color-surface); }
+    .tab-btn.active { color: var(--color-accent); border-bottom-color: var(--color-accent); }
+
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--color-ink);
+      margin-top: 32px;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-hairline);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    h2:first-child { margin-top: 0; }
+    .h2-note { font-family: var(--font-mono); font-size: 12px; font-weight: 400; color: var(--color-ink-muted); }
+
+    h3 {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--color-ink);
+      margin-top: 24px;
+      margin-bottom: 10px;
+    }
+
+    /* 多轨时间轴画布 */
+    .timeline-box {
+      border: 1px solid var(--color-hairline);
+      background-color: var(--color-surface);
+      padding: 18px 20px;
+      margin-bottom: 24px;
+    }
+
+    .act-filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-hairline);
+    }
+
+    .act-chip {
+      appearance: none;
+      background: var(--color-ground);
+      border: 1px solid var(--color-hairline);
+      color: var(--color-ink-secondary);
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      padding: 5px 12px;
+      cursor: pointer;
+    }
+
+    .act-chip:hover { border-color: var(--color-rule-strong); color: var(--color-ink); }
+    .act-chip.active { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-ground); }
+
+    .timeline-ruler {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-ink-muted);
+      margin-bottom: 6px;
+    }
+
+    .shot-bar {
+      display: flex;
+      width: 100%;
+      height: 52px;
+      border: 1px solid var(--color-rule-strong);
+      background: var(--color-ground);
+      overflow: hidden;
+    }
+
+    .shot-seg {
+      position: relative;
+      height: 100%;
+      border-right: 1px solid var(--color-ground);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-width: 18px;
+      overflow: hidden;
+    }
+
+    .shot-seg:last-child { border-right: none; }
+    .shot-seg:hover { filter: brightness(0.92); }
+    .shot-seg.selected { outline: 2px solid var(--color-accent); outline-offset: -2px; z-index: 2; }
+    .shot-seg.dimmed { opacity: 0.28; }
+    .shot-seg-id { font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: #F2ECE1; }
+    .shot-seg-sec { font-family: var(--font-mono); font-size: 10px; color: rgba(242, 236, 225, 0.85); }
+    .shot-seg-flag { position: absolute; top: 0; right: 0; width: 6px; height: 6px; background: var(--color-accent); }
+
+    .aux-track-row {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: 114px 1fr;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .aux-label { font-family: var(--font-mono); font-size: 11px; color: var(--color-ink-secondary); text-align: right; }
+    .aux-lane { position: relative; height: 18px; background: var(--color-ground); border: 1px solid var(--color-hairline); }
+    .aux-block { position: absolute; top: 1px; bottom: 1px; font-family: var(--font-mono); font-size: 10px; line-height: 14px; padding: 0 4px; color: #F2ECE1; white-space: nowrap; overflow: hidden; }
+
+    .chart-wrap { margin-top: 16px; border-top: 1px solid var(--color-hairline); padding-top: 12px; }
+    .chart-legend { display: flex; gap: 20px; flex-wrap: wrap; font-size: 12px; color: var(--color-ink-secondary); margin-bottom: 6px; }
+    .legend-dot { display: inline-block; width: 14px; height: 2.5px; vertical-align: middle; margin-right: 6px; }
+
+    /* 左右图文分镜审片检查器 */
+    .inspector-grid {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .shot-list {
+      border-top: 1.5px solid var(--color-rule-strong);
+      border-bottom: 1px solid var(--color-hairline);
+      max-height: 920px;
+      overflow-y: auto;
+    }
+
+    .shot-row {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 10px;
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--color-hairline);
+      cursor: pointer;
+      align-items: center;
+    }
+
+    .shot-row:hover { background-color: var(--color-surface); }
+    .shot-row.selected {
+      background-color: var(--color-surface-deep);
+      border-left: 3px solid var(--color-accent);
+      padding-left: 7px;
+    }
+
+    .shot-thumb {
+      width: 64px;
+      height: 36px;
+      object-fit: cover;
+      border: 1px solid var(--color-rule-strong);
+      display: block;
+      background: #231C14;
+    }
+
+    .shot-row-code { font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; color: var(--color-accent); margin-right: 6px; }
+    .shot-row-title { font-size: 13px; font-weight: 500; color: var(--color-ink); }
+    .shot-row-act { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--color-ink-muted); margin-top: 2px; }
+
+    /* 详情主视窗 + 16:9 构图分镜画框 */
+    .shot-detail {
+      border-top: 1.5px solid var(--color-rule-strong);
+      border-bottom: 1px solid var(--color-hairline);
+      padding: 18px 0 24px;
+    }
+
+    .detail-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--color-hairline);
+      margin-bottom: 16px;
+    }
+
+    .detail-title { font-family: var(--font-display); font-size: 24px; font-weight: 600; color: var(--color-ink); }
+    .detail-meta { font-family: var(--font-mono); font-size: 12.5px; color: var(--color-ink-secondary); margin-top: 4px; }
+
+    .detail-nav { display: flex; gap: 8px; flex-wrap: wrap; }
+    .nav-btn {
+      appearance: none;
+      background: var(--color-surface);
+      border: 1px solid var(--color-rule-strong);
+      color: var(--color-ink);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+    .nav-btn:hover, .nav-btn.active { background: var(--color-ink); color: var(--color-ground); }
+
+    .frame-stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #1A1510;
+      border: 1.5px solid var(--color-rule-strong);
+      overflow: hidden;
+      margin-bottom: 18px;
+      cursor: zoom-in;
+    }
+
+    .frame-stage img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .frame-overlay-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      display: none;
+    }
+
+    .frame-overlay-svg.visible { display: block; }
+
+    .frame-caption-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-hairline);
+      border-top: none;
+      padding: 8px 14px;
+      margin-top: -18px;
+      margin-bottom: 18px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--color-ink-secondary);
+    }
+
+    /* 拍子切换条（镜段下细分 B01-B32） */
+    .beat-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--color-hairline);
+    }
+
+    .beat-pill {
+      appearance: none;
+      background: var(--color-surface);
+      border: 1px solid var(--color-hairline);
+      color: var(--color-ink-secondary);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 7px 14px;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .beat-pill:hover { border-color: var(--color-rule-strong); color: var(--color-ink); }
+    .beat-pill.active {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: #F2ECE1;
+      font-weight: 600;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px 26px;
+      margin-bottom: 16px;
+    }
+
+    .spec-block { border-top: 1px solid var(--color-hairline); padding-top: 10px; }
+    .spec-block.full { grid-column: 1 / -1; }
+    .spec-key { font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; color: var(--color-accent-azurite); letter-spacing: 0.04em; margin-bottom: 5px; }
+    .spec-key.red { color: var(--color-accent); }
+    .spec-key.green { color: var(--color-accent-malachite); }
+    .spec-key.gold { color: var(--color-accent-gold); }
+    .spec-val { font-size: 14.5px; color: var(--color-ink); line-height: 1.7; }
+
+    .voice-quote {
+      background: var(--color-surface);
+      border-left: 2.5px solid var(--color-accent);
+      padding: 12px 16px;
+      font-family: var(--font-display);
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: var(--color-ink);
+    }
+
+    .dof-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-hairline);
+      padding: 12px 14px;
+      margin-top: 6px;
+    }
+
+    .dof-cell-label { font-family: var(--font-mono); font-size: 11px; color: var(--color-ink-muted); }
+    .dof-cell-val { font-family: var(--font-mono); font-size: 12.5px; font-weight: 600; color: var(--color-ink); margin-top: 2px; }
+
+    /* 全片 17 镜故事板总览画廊墙（Contact Sheet） */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 14px;
+    }
+
+    .contact-card {
+      border-top: 1.5px solid var(--color-rule-strong);
+      border-bottom: 1px solid var(--color-hairline);
+      padding: 12px 0 14px;
+      cursor: pointer;
+    }
+
+    .contact-card:hover .contact-title { color: var(--color-accent); }
+
+    .contact-img-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 1px solid var(--color-rule-strong);
+      overflow: hidden;
+      background: #1A1510;
+      margin-bottom: 10px;
+    }
+
+    .contact-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .contact-meta { font-family: var(--font-mono); font-size: 11.5px; color: var(--color-accent); margin-bottom: 3px; }
+    .contact-title { font-family: var(--font-display); font-size: 16.5px; font-weight: 600; color: var(--color-ink); margin-bottom: 5px; }
+    .contact-desc { font-size: 13px; color: var(--color-ink-secondary); line-height: 1.6; }
+
+    /* 表格样式 */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      margin-bottom: 24px;
+      font-size: 13.5px;
+    }
+
+    .data-table th {
+      text-align: left;
+      font-family: var(--font-display);
+      font-weight: 600;
+      padding: 10px 10px;
+      border-top: 1.5px solid var(--color-rule-strong);
+      border-bottom: 1.5px solid var(--color-rule-strong);
+      background: var(--color-surface);
+      color: var(--color-ink);
+      white-space: nowrap;
+    }
+
+    .data-table td {
+      padding: 10px;
+      border-bottom: 1px solid var(--color-hairline);
+      vertical-align: top;
+      color: var(--color-ink-secondary);
+      line-height: 1.6;
+    }
+
+    .data-table td strong { color: var(--color-ink); }
+    .sev-p0 { font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--color-accent); border: 1px solid var(--color-accent); padding: 1px 5px; display: inline-block; }
+    .sev-p1 { font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--color-accent-azurite); border: 1px solid var(--color-accent-azurite); padding: 1px 5px; display: inline-block; }
+
+    /* 旁白对比 */
+    .vo-switch-bar { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+    .vo-btn { appearance: none; background: var(--color-surface); border: 1px solid var(--color-hairline); padding: 8px 16px; font-size: 13.5px; color: var(--color-ink-secondary); cursor: pointer; }
+    .vo-btn.active { background: var(--color-accent); border-color: var(--color-accent); color: #F2ECE1; font-weight: 600; }
+    .vo-card { border: 1px solid var(--color-rule-strong); background: var(--color-surface); padding: 20px 24px; margin-bottom: 24px; }
+    .vo-text { font-family: var(--font-display); font-size: 19px; line-height: 1.85; color: var(--color-ink); margin-bottom: 12px; max-width: 62ch; }
+    .vo-meta { font-family: var(--font-mono); font-size: 12px; color: var(--color-ink-secondary); border-top: 1px solid var(--color-hairline); padding-top: 10px; }
+
+    /* 全屏看图灯箱 */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 16, 12, 0.94);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 28px;
+      z-index: 999;
+    }
+
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 94vw; max-height: 80vh; border: 1px solid var(--color-hairline); }
+    .lightbox-bar {
+      width: min(94vw, 1240px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      color: #F2ECE1;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      gap: 12px;
+    }
+    .lightbox-close {
+      background: var(--color-accent);
+      color: #F2ECE1;
+      border: none;
+      padding: 6px 14px;
+      font-family: var(--font-mono);
+      cursor: pointer;
+    }
+
+    .footer-note {
+      margin-top: var(--space-xl);
+      padding-top: 16px;
+      border-top: 1px solid var(--color-hairline);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--color-ink-muted);
+    }
+
+    @media (max-width: 1024px) {
+      .kpi-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .inspector-grid { grid-template-columns: 1fr; }
+      .shot-list { max-height: 280px; }
+      .spec-grid { grid-template-columns: 1fr; }
+      .dof-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 680px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="masthead">
+      <div class="masthead-top">
+        <span class="doc-serial">GUOBO-4DVR-XSZ · V3.0 MUSEUM-VERIFIED STORYBOARD · 17 KEYFRAMES · 32 BEATS · 480s ONE-TAKE</span>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <a href="./夏商西周_声音配音与配乐工作台.html" style="display:inline-block;border:1px solid #9E3020;background:#9E3020;color:#F2ECE1;font-family:var(--font-mono);font-size:11.5px;padding:3px 11px;text-decoration:none;">前往配音与配乐工作台 →</a>
+          <span class="seal-mark">V3.0 考古真值审定版</span>
+        </div>
+      </div>
+      <h1>《夏商西周·礼乐之基，青铜之魂》4D VR 构图分镜导演审片工作台</h1>
+      <p class="lead-summary">
+        本 V3.0 博物馆级审片台在 V2.0 基础上，完整解包并对照原稿 20 张参考图与国博/二里头/三星堆/殷墟考古真品完成了<strong>全部 17 张构图关键帧的历史真值重构</strong>：二里头平底束腰无双柱乳钉纹爵、殷墟矮胖土炉与白发老匠/少年学徒（剔除汉代独轮车）、倒置填土安全合浇地坑、后母戊鼎腹部大片素面留白与三字铭文、商代 1004 号大墓兽面铜胄（去罗马鸡冠）与朱黑皮甲妇好、1:1 真品玉凤与青铜鸮尊、1:1 四角四羊方尊、2.1:1 扁阔三星堆纵目面具、西周长方漆木舆多辐战车及夯土原木宗庙利簋。
+      </p>
+      <div class="kpi-strip tabular-nums">
+        <div class="kpi-item">
+          <div class="kpi-label">全片构图分镜图</div>
+          <div class="kpi-val">17 张 · 16:9</div>
+          <div class="kpi-sub">S01–S17 一镜一图零空缺</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">工业级细化拍子</div>
+          <div class="kpi-val">32 Beats</div>
+          <div class="kpi-sub">精准 08:00（480s）无重叠</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">死黑硬切消除</div>
+          <div class="kpi-val">7 → 0</div>
+          <div class="kpi-sub">全部转为阴翳压暗与媒介擦镜</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">UE5 隐藏加载窗</div>
+          <div class="kpi-val">W1 – W5</div>
+          <div class="kpi-sub">5 处 3.0–4.5s 零察觉切换</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">防眩晕与实触红线</div>
+          <div class="kpi-val">Yaw ≤ 15°/s</div>
+          <div class="kpi-sub">战车带稳框 · 密格 50s 锁止</div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="tab-bar" role="tablist">
+      <button class="tab-btn active" data-tab="storyboard" role="tab">一、32 拍子图文精审台</button>
+      <button class="tab-btn" data-tab="contact" role="tab">二、17 镜全片故事板总览墙</button>
+      <button class="tab-btn" data-tab="beatsTable" role="tab">三、32 拍子 UE5 / 座椅制作总表</button>
+      <button class="tab-btn" data-tab="reasoning" role="tab">四、8 大硬伤诊断与商周旁白三版</button>
+      <a class="tab-btn" href="./夏商西周_声音配音与配乐工作台.html" style="text-decoration:none;color:var(--color-accent);margin-left:auto;">五、配音与配乐工作台 ↗</a>
+    </nav>
+
+    <!-- 面板一：32 拍子图文精审台 -->
+    <section id="panel-storyboard" class="panel active">
+      <h2>
+        <span>全片 480 秒一镜到底多轨时间轴（支持按幕筛选与镜段直跳）</span>
+        <span class="h2-note">点击分镜图可全屏灯箱审阅 · 可叠加 VR 三分法与安全框</span>
+      </h2>
+
+      <div class="timeline-box">
+        <div class="act-filter-row" id="actFilterRow"></div>
+        <div class="timeline-ruler tabular-nums">
+          <span>00:00</span><span>01:00</span><span>02:00</span><span>03:00</span>
+          <span>04:00</span><span>05:00</span><span>06:00</span><span>07:00</span><span>08:00</span>
+        </div>
+        <div class="shot-bar" id="shotBar"></div>
+        <div class="aux-track-row">
+          <div class="aux-label">UE5 流式加载窗</div>
+          <div class="aux-lane" id="streamLane"></div>
+        </div>
+        <div class="aux-track-row">
+          <div class="aux-label">4D 硬件关键事件</div>
+          <div class="aux-lane" id="hapticLane"></div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-legend">
+            <span><i class="legend-dot" style="background:#9E3020;"></i>戏剧情绪与视觉张力曲线（麦基弧光）</span>
+            <span><i class="legend-dot" style="background:#1B4D6B;"></i>4D 座椅体感力度（% 最大阈值）</span>
+            <span><i class="legend-dot" style="background:#246751; height:1.5px; border-top:1.5px dashed #246751;"></i>全年龄防眩晕安全红线（75%）</span>
+          </div>
+          <svg id="pacingSvg" viewBox="0 0 1200 126" width="100%" height="126" aria-label="情绪与体感曲线"></svg>
+        </div>
+      </div>
+
+      <div class="inspector-grid">
+        <aside class="shot-list tabular-nums" id="shotList"></aside>
+        <article class="shot-detail" id="shotDetail"></article>
+      </div>
+    </section>
+
+    <!-- 面板二：17 镜全片故事板画廊墙 -->
+    <section id="panel-contact" class="panel">
+      <h2>
+        <span>全片 17 镜构图分镜故事板总览墙（Contact Sheet · 点击任意画面进入精审）</span>
+        <span class="h2-note">统一初铸赤金青铜材质 · 谷崎润一郎阴翳光影 · 16:9 VR 第一人称视角</span>
+      </h2>
+      <div class="contact-grid" id="contactGrid"></div>
+    </section>
+
+    <!-- 面板三：32 拍子 UE5 / 座椅统筹表 -->
+    <section id="panel-beatsTable" class="panel">
+      <h2>
+        <span>32 拍子工业级 UE5 Sequencer 与 4D 座椅同步总表（B01 – B32）</span>
+        <span class="h2-note">配套 CSV 已同步导出：夏商西周_32拍子_UE5与4D座椅制作总表_V2.0.csv</span>
+      </h2>
+      <table class="data-table tabular-nums" id="beatsFullTable">
+        <thead>
+          <tr>
+            <th style="width:54px;">拍子</th>
+            <th style="width:94px;">时间码</th>
+            <th style="width:170px;">镜头与标题</th>
+            <th style="width:240px;">前/中/远构图与 VR 视线锚点</th>
+            <th style="width:170px;">机位与灯光色温</th>
+            <th style="width:180px;">4D 座椅 DOF 与特效</th>
+            <th>UE5 加载与核心叙事要点</th>
+          </tr>
+        </thead>
+        <tbody id="beatsTableBody"></tbody>
+      </table>
+    </section>
+
+    <!-- 面板四：8 大硬伤诊断与商周过渡旁白 -->
+    <section id="panel-reasoning" class="panel">
+      <h2>
+        <span>原稿 L70 批注专项优化：商周过渡旁白三版对比试读</span>
+        <span class="h2-note">彻底替换原稿三国穿帮词：“天下合久必分，分久必合，又到了战乱年代”</span>
+      </h2>
+      <div class="vo-switch-bar" id="voSwitchBar"></div>
+      <div class="vo-card" id="voCard"></div>
+
+      <h2>
+        <span>原稿 8 大硬伤外科诊断与甲方汇报依据表（Reasoning Table）</span>
+        <span class="h2-note">个人知识库六大导演圆桌会诊 · 零新增重资产</span>
+      </h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width:60px;">编号</th>
+            <th style="width:76px;">等级</th>
+            <th style="width:200px;">原稿病灶与位置</th>
+            <th style="width:310px;">导演 / 考古 / 人因诊断</th>
+            <th>重构落盘方案（已在分镜图与 32 拍子中兑现）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="tabular-nums"><strong>D01</strong></td><td><span class="sev-p0">P0 致命</span></td><td><strong>7 处死黑屏硬切</strong></td><td>宣称一镜到底却反复切纯黑展柜，彻底摧毁塔可夫斯基时间压力。</td><td>全部改为<strong>阴翳环境压暗（Lum 10%–14%）+ 物理媒介擦镜</strong>（蒸汽、青烟、黄沙、星脉、拂晓雾）。</td></tr>
+          <tr><td class="tabular-nums"><strong>D02</strong></td><td><span class="sev-p0">P0 致命</span></td><td><strong>后母戊鼎与妇好同台</strong></td><td>后母戊鼎祭祀武丁王后妇妌时，妇好已离世多年；同台出征必被考古专家否决。</td><td>巨鼎稳落殷墟宗庙深台，借祭烟掠过<strong>朱黑礼幔（重屏）</strong>微回拨至武丁盛世誓师台见妇好（见 S07 分镜图）。</td></tr>
+          <tr><td class="tabular-nums"><strong>D03</strong></td><td><span class="sev-p1">P1 高危</span></td><td><strong>泥模与内范雕纹混淆</strong></td><td>纹饰主雕于外范内壁，内范泥芯仅预置内壁阳文铭文块。</td><td>B10 精准区分泥芯铭文与外范内壁精雕云雷饕餮纹，配合多槽合浇（见 S05 分镜图）。</td></tr>
+          <tr><td class="tabular-nums"><strong>D04</strong></td><td><span class="sev-p0">P0 致命</span></td><td><strong>三星堆纵目扑面急停</strong></td><td>300+ 座影院覆盖大量老人小孩，高速扑面急停属 Jumpscare 惊吓与眩晕炸弹。</td><td>B26 改以 2.2m 柔光静谧显现 + 4.5s S 曲线缓退，呈现神圣崇高感（见 S14 分镜图）。</td></tr>
+          <tr><td class="tabular-nums"><strong>D05</strong></td><td><span class="sev-p1">P1 高危</span></td><td><strong>开场公转与战车无框</strong></td><td>无参照物旋转及高速颠簸极易引发前庭冲突晕动呕吐。</td><td>开场改文物自转 + 座椅微弧 `≤6°/s`；牧野战车下缘 18% 锁死漆木青铜车轼稳框（见 S16 分镜图）。</td></tr>
+          <tr><td class="tabular-nums"><strong>D06</strong></td><td><span class="sev-p1">P1 高危</span></td><td><strong>科幻时空隧道与三国错词</strong></td><td>网游风隧道与青铜礼制审美割裂；“合久必分”晚于牧野两千余年。</td><td>灼骨兆纹化为<strong>华夏青铜星图（见 S12 分镜图）</strong>；彻底重写公元前 1046 甲子清晨过渡旁白。</td></tr>
+          <tr><td class="tabular-nums"><strong>D07</strong></td><td><span class="sev-p1">P1 高危</span></td><td><strong>妇好晕倒、微信词与错字</strong></td><td>战神晕倒躺地削弱人格；“嗯嗯”出戏；“猫头秃”为错别字。</td><td>妇好改<strong>单膝拄戈稳立接玉凤（见 S09 分镜图）</strong>；小工匠铿锵应诺；全篇校准“鸱鸮”与“剥（卜）”。</td></tr>
+          <tr><td class="tabular-nums"><strong>D08</strong></td><td><span class="sev-p1">P1 高危</span></td><td><strong>视点分裂与缺加载窗</strong></td><td>无流式加载窗会导致 UE5 掉帧；密格升降缺缓冲易夹手或摸空。</td><td>单一浮舆三级代入弧；预埋 W1–W5 五处 `3.0–4.5s` 遮罩窗；密格双 `3.0s` 静音对齐与红外防夹手检测。</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer class="footer-note">
+      <span>国家博物馆《古代中国》4D VR · 夏商西周篇 V2.0（17 构图分镜图 × 32 拍子全解）</span>
+      <span>遵循宋画宣绢审美法典 · 零外部依赖离线审片台</span>
+    </footer>
+  </div>
+
+  <!-- 全屏审图灯箱 -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <img id="lightboxImg" src="" alt="全屏构图分镜审片" />
+    <div class="lightbox-bar">
+      <span id="lightboxCaption"></span>
+      <button class="lightbox-close" id="lightboxClose">关闭全屏 (ESC)</button>
+    </div>
+  </div>
+
+  <script>
+    const ACTS = [
+      { id: "ALL", name: "全片 7 幕 (08:00)", color: "#231C14" },
+      { id: "A1", name: "一·二里头青铜爵", color: "#9E3020" },
+      { id: "A2", name: "二·殷墟后母戊鼎", color: "#7B3A1E" },
+      { id: "A3", name: "三·妇好与青铜鸮尊", color: "#A87C33" },
+      { id: "A4", name: "四·协田与甲骨灼兆", color: "#574836" },
+      { id: "A5", name: "五·星图·四羊方尊·三星堆", color: "#246751" },
+      { id: "A6", name: "六·牧野誓师与战车", color: "#1B4D6B" },
+      { id: "A7", name: "七·利簋铭文化星", color: "#36455A" }
+    ];
+
+    const SHOTS = [
+      {
+        id: "S01", act: "A1", actName: "第一幕 · 泥土化金（二里头青铜爵）", title: "陶土塑形与复合分范",
+        start: 0, dur: 22, tc: "00:00 – 00:22", tension: 35, haptic: 15, flag: "",
+        img: "./storyboards/S01_erlitou_molds.png",
+        imgNote: "【考古真值校准】夏代二里头平底束腰无晚商双粗柱乳钉纹青铜爵陶模 · 4 块扇形外范爆炸构图 · 2400K 暗窑炭火逆光",
+        beats: [
+          {
+            bid: "B01", tc: "00:00 – 00:11", dur: 11, name: "暗窑微光起幅与陶模成形",
+            comp: "【三分对称纵深】FG(0.9–1.4m)漂浮暖赭细尘；MG(1.8m)湿润陶土拉坯塑成纤巧二里头青铜爵坯；BG(>5m)暖暗陶窑虚焦影(Lum 12%)。",
+            gaze: "中心下方 2400K 炭火柔光 + 居中单音石磬，1 秒内将全厅目光稳稳锁在正面 0° 陶模。",
+            camera: "眼高 1.60m，自 2.4m 以柔和 S 曲线前推(0.55 m/s)至 1.8m；零横滚零旋转，给初戴头显者 11s 舒适适应期。",
+            light: "底部 2400K 暖逆光 + 右上微弱 4500K 窑口天光(光比 6:1)；陶土哑光 Roughness 0.68 保留手工刮痕。",
+            script: "【旁白 00:01–00:11】夏商西周，是中国早期国家形成与发展的重要时期。生产力飞跃前行，社会分工日益细密，青铜铸造更铸就了辉煌灿烂的“青铜时代”。｜【浮空微标 00:09】陶模",
+            blocking: "无人物出镜，由无形窑热气流带动湿泥柔滑成形。",
+            dof: { pitch: "0° 平稳", yaw: "0° (防初戴头晕)", wind: "关闭", vibe: "0% 视觉适应期" },
+            ue: "常驻轻量化二里头制范微场景，后台预热外范分块骨骼与流体缓存。"
+          },
+          {
+            bid: "B02", tc: "00:11 – 00:22", dur: 11, name: "外范精准分块剥离与内范成形",
+            comp: "【放射爆炸图解构图】MG(1.75m)湿泥覆合爵模后，沿接缝精准分为 4 块扇形外范向外径向抽离 18cm；同时内腔与底部填充深褐泥芯并微沉 10cm 展示内范结构。",
+            gaze: "器物整体匀速自转(12°/s)配合极轻右弧移(Yaw ≤ 6°/s)，淡金虚线沿切缝顺时针扫过引导环视。",
+            camera: "保持 1.75m 黄金赏艺距，微俯 Pitch -4° 增强工艺工程可读性，严防原稿高速公转致晕。",
+            light: "2400K 侧逆光锐化泥范接缝边缘厚度与内壁几何阴纹细节。",
+            script: "【旁白 00:12–00:22】三千多年前，在河南偃师，二里头先民以不断完善的“复合范铸造法”，使大型而复杂的青铜器得以成形——这是华夏青铜文明的第一次飞跃。｜【标注】外范 / 内范",
+            blocking: "泥块按精确机械阻尼曲线同步分离，切口清晰干脆。",
+            dof: { pitch: "-4° 工艺微俯", yaw: "≤ 6°/s 微弧", wind: "关闭", vibe: "15% / 28Hz 剥离轻颤" },
+            ue: "预热 FX_MoltenBronze_Fluid 千度铜液倾倒流体模拟。"
+          }
+        ]
+      },
+      {
+        id: "S02", act: "A1", actName: "第一幕 · 泥土化金（二里头青铜爵）", title: "合范浇铸与炽热脱范",
+        start: 22, dur: 24, tc: "00:22 – 00:46", tension: 62, haptic: 60, flag: "W1",
+        img: "./storyboards/S02_bronze_jue_casting.png",
+        imgNote: "【考古真值校准】圆柱合范半透明浇铸 · 脱范现出平底束腰无晚商双柱的真·二里头乳钉纹青铜爵（W1 加载窗）",
+        beats: [
+          {
+            bid: "B03", tc: "00:22 – 00:34", dur: 12, name: "琥珀半透明合范与 1100°C 铜液浇铸",
+            comp: "【右上→中心对角动线】FG(1.2m)热浪空气折射扭曲；MG(1.5m)外范严丝合拢转为琥珀半透明陶瓷显露爵腔；右上(+22°)炽热坩埚倾泻耀眼白金铜液灌满空腔。",
+            gaze: "右上 2000K 极亮铜液倾倒光束自然牵引目光由右上滑向正中空腔，亮度由底向上充盈攀升。",
+            camera: "由 1.75m 极缓前推至 1.50m(0.08 m/s)，Pitch 从 -4° 柔抬至 +1°。",
+            light: "熔铜液作为 2000K 动态主点光源照亮悬浮陶尘与半透明范壁(光比 8:1)。",
+            script: "【标注 00:27】浇铸（此拍人声完全留白，让观众纯粹沉浸于千度热风与铜液咆哮的物理临场感）。",
+            blocking: "坩埚在长铜钳稳握下匀速倾注，铜液表面可见真实气泡翻涌。",
+            dof: { pitch: "+1° 缓抬", yaw: "0°", wind: "38°C 温和热风", vibe: "20% / 18Hz 铜液奔涌" },
+            ue: "激活合范透明 Shader 与铜液动态自发光点光源。"
+          },
+          {
+            bid: "B04", tc: "00:34 – 00:46", dur: 12, name: "炽裂脱范、范线扫光与【加载窗 W1】",
+            comp: "【中心爆发放射构图】MG(1.5m)外范现蛛网金裂分三拍向外崩裂(碎块严守安全外侧轨，禁直飞眼部)，白炽蒸汽与火星漫涌四野，通体灿烂赤金的新铸青铜爵破范而出！",
+            gaze: "新爵匀速微旋(10°/s)，一道 3200K 窄条高光扫过长流、翘尾与器身凸起“范线”。",
+            camera: "1.5m 稳态悬停微仰 +3°，零横滚，聚焦工艺精微细节。",
+            light: "初铸赤金青铜 Metallic 0.90 / Roughness 0.24，严禁出现入土锈绿。",
+            script: "【标注 00:36】脱范｜【左下字幕 00:40】青铜爵 · 夏（二里头）｜【细线标注 00:42】范线（复合范铸痕）",
+            blocking: "陶范崩裂三声脆响后尘雾微散，器身如钟磬轻鸣微震。",
+            dof: { pitch: "+3° 赏器微仰", yaw: "0°", wind: "热风柔和收停", vibe: "25→45→60% / 40Hz 三连脆震" },
+            ue: "【W1 加载窗 00:43–00:46 (3.0s)】借脱范外缘炽热白蒸汽与火星异步加载第二幕殷墟百人铸铜工坊。"
+          }
+        ]
+      },
+      {
+        id: "S03", act: "A1", actName: "第一幕 · 泥土化金（二里头青铜爵）", title: "砸范破壳·拉远入殷墟巨坊",
+        start: 46, dur: 14, tc: "00:46 – 01:00", tension: 55, haptic: 40, flag: "",
+        img: "./storyboards/S03_workshop_reveal.png",
+        imgNote: "【考古真值校准】参照原稿 image9 半露天木棚+矮胖土熔炉，剔除汉代独轮车改木杠抬筐 · 案上为二里头无柱赤金青铜爵",
+        beats: [
+          {
+            bid: "B05", tc: "00:46 – 00:53", dur: 7, name: "青铜爵落实景木案与一锤开范",
+            comp: "【废除原稿纯黑桌！】FG(1.2m)沙尘粗糙厚实木案横贯下三分之一，左中右并列 3 件青铜爵(左中崭新赤金、右仍包灰红陶范)；BG(>3m)浅景深虚焦木柱与炉火(Lum 14%)。",
+            gaze: "赤膊精壮商代铸工自左 -30° 大步入画，高举重锤弧线将视线牢牢牵至案左陶坯。",
+            camera: "随爵下落柔和微俯至 -2°；锤击瞬间镜头绝对 0 抖动(靠座椅震动传递冲击防头晕)。",
+            light: "2200K 炉火强侧光切出铸工汗湿肌肉线条与案面红色碎陶渣颗粒。",
+            script: "无旁白，纯实景音效：青铜落案“铛”沉响 → 重锤破陶“砰！”碎裂实声。",
+            blocking: "铸工肩披粗麻布巾、腰系粗麻短裙，蓄力半拍稳准一击砸裂左坯，碎陶尘埃四扬。",
+            dof: { pitch: "-2° 微俯案台", yaw: "0°", wind: "关闭", vibe: "40% / 35Hz 砸范单点脆震" },
+            ue: "彻底卸载第一幕二里头残余微资产，平稳切入殷墟实景大场景。"
+          },
+          {
+            bid: "B06", tc: "00:53 – 01:00", dur: 7, name: "大景深后拉揭幕百人殷墟巨坊",
+            comp: "【宏大纵深拉镜】焦点由木案拉通全景：FG 退成工作台与砸范铸工；MG(4–12m)百余名搬炭、鼓风、修范铸工井然穿梭；BG(12–40m)数十座通红竖炉火柱冲天、青烟直入高窗。",
+            gaze: "顶部天窗倾泻而下的 5400K 丁达尔光束与地面数十处 2200K 炉火形成强烈纵深透视引导。",
+            camera: "平稳后拉(1.20 m/s)并柔和抬升眼高至 1.70m，Pitch 轻仰至 +3° 制造“由微入宏”史诗震慑。",
+            light: "伊顿冷暖对比：2200K 熔炉炽橙 vs. 5400K 茅木高窗灰蓝尘光。",
+            script: "无旁白；空间音频由单点骤然拓宽为 360° 百人鼓风、号子与炉火全景声场。",
+            blocking: "百人 VAT 群体分工严谨：抬坩埚、拉双囊皮风箱、运陶范互不穿模。",
+            dof: { pitch: "+3° 揭幕轻仰", yaw: "0°", wind: "37°C 作坊热浪 2.5m/s", vibe: "15% 大空间热浪低震" },
+            ue: "全量稳态运行 LVL_Yinxu_BronzeFoundry 百人人群动画。"
+          }
+        ]
+      },
+      {
+        id: "S04", act: "A2", actName: "第二幕 · 以器载情（殷墟后母戊鼎）", title: "工坊穿行与合浇生死对话",
+        start: 60, dur: 32, tc: "01:00 – 01:32", tension: 68, haptic: 25, flag: "",
+        img: "./storyboards/S04_yinxu_artisans_tension.png",
+        imgNote: "【考古真值校准】严格匹配原稿 image9 卡司：白发老工匠安抚十几岁紧张少年学徒 + 头巾严厉工头 · 2200K 炉火切脸",
+        beats: [
+          {
+            bid: "B07", tc: "01:00 – 01:10", dur: 10, name: "百人过道沉浸穿行与停泊",
+            comp: "【走廊引导线构图】FG 两侧(1.6m)擦过炽热炭筐与抬坩埚工役；MG(5→2.2m)前方三人剪影渐明；BG(10m+)冒滚滚白烟的巨型方形铸鼎坑。",
+            gaze: "过道尽头工头焦急指向地坑的手臂动作锁定观众正面 0° 视线。",
+            camera: "眼高 1.60m 匀速滑行(0.90 m/s)，01:09 S 曲线缓停在三人身前 2.2m 等身观演位。",
+            light: "掠过熔炉侧口时暖红侧光周期性扫过前景木柱，增强行进空间节奏。",
+            script: "无主对白，环境音为忙碌脚步声、皮风箱“呼哧”声与远方粗犷号子。",
+            blocking: "两侧抬铜液工役默契错身让道，体现观众物理在场感。",
+            dof: { pitch: "0° 平稳", yaw: "≤ 5°/s", wind: "掠炉微温热气", vibe: "15% 滑行微律动" },
+            ue: "启用近景人物高精面捕与汗水贴图 LOD0。"
+          },
+          {
+            bid: "B08", tc: "01:10 – 01:22", dur: 12, name: "麦基危机爆发：合浇倒计时与少年怯场",
+            comp: "【经典三角阻塞构图】左 FG(-18°, 2.1m)虬髯严厉工头；中后(0°, 2.4m)沧桑老工匠；右 FG(+18°, 2.1m)汗流浃背、紧攥浇勺柄发颤的年轻灌注工匠；三人缝隙恰好框出冒烟巨坑。",
+            gaze: "工头手指地坑的斜向视线与居中人声对白锁定三角核心焦点。",
+            camera: "静态稳态观演(2.2m)，让观众如站一旁亲历生死合浇前的窒息压力。",
+            light: "左方 2200K 炉火强侧光切亮半脸，右半脸沉入阴翳(7:1 强戏剧光比)，汗珠高光分明。",
+            script: "工头：昨儿偏偏断在浇口那半息！今儿几十座坩埚同时合浇，火候、时辰差半分，整座范坑就全废了！\n小工匠（擦汗压低声）：师父……这鼎范比往常大了何止数倍，头一回见这么沉的铜水，我手心里直打颤……",
+            blocking: "三人均着粗麻短褐、草鞋与束腰，小工匠手腕微颤暴露心理压力(埃格里三维人物)。",
+            dof: { pitch: "0°", yaw: "0°", wind: "微弱余热", vibe: "20% / 16Hz 远景风箱脉动" },
+            ue: "严格校验口型动画帧对齐，居中声道分离干声。"
+          },
+          {
+            bid: "B09", tc: "01:22 – 01:32", dur: 10, name: "情感破局：感念妇妌种黍恩与少年觉醒",
+            comp: "老工匠跨前一步，布满烫伤老茧的大手稳稳按住少年肩头，打破左右紧张对峙三角，凝聚为向后的共同行动矢量。",
+            gaze: "01:30 小工匠铿锵应诺后转身向左前方地坑大步奔去，背影成为下一镜天然运动牵引箭头。",
+            camera: "01:30 顺小工匠转身预热缓左摇(Yaw 6°/s)，毫无滞涩接入地坑俯瞰。",
+            light: "暖火反光照亮少年眼中由怯转坚的眼神高光(Eye Catchlight)。",
+            script: "老工匠：忘了你当初哭着求着进铸坊的话了？武丁先王在时，若不是妇妌王后亲率众人种黍开荒，哪有咱们一口饱饭、哪有你今日活命？\n工头（振臂高呼）：都给我提足精神！为王后铸鼎，火候、时辰，半分差不得！\n老工匠：允了的事，就得拿命托住。去吧！\n小工匠（铿锵）：是！今日便是拼了气力，差错也绝不出在我手上！\n老工匠：这就对了！",
+            blocking: "彻底删除原稿微信口癖“嗯嗯”，以李安式克制手部按肩细节传递东方师徒与感恩情怀。",
+            dof: { pitch: "0°", yaw: "01:30起 Yaw 6°/s", wind: "微弱余热", vibe: "25% 百工号子低频律动" },
+            ue: "触发小工匠奔向地坑路径动画与全坑合浇倒计时序列。"
+          }
+        ]
+      },
+      {
+        id: "S05", act: "A2", actName: "第二幕 · 以器载情（殷墟后母戊鼎）", title: "地坑合范精雕与多炉合浇",
+        start: 92, dur: 16, tc: "01:32 – 01:48", tension: 76, haptic: 52, flag: "",
+        img: "./storyboards/S05_pit_casting_ding.png",
+        imgNote: "【考古真值校准】真实殷墟倒置块范夯土加固合浇法：全员退至地坑上方安全台沿操控杠杆坩埚沿 5 条直泥槽合浇",
+        beats: [
+          {
+            bid: "B10", tc: "01:32 – 01:48", dur: 16, name: "越肩俯瞰长方形地坑、精雕外范与八槽合浇",
+            comp: "【对角俯冲深度构图】FG(1.3–2.0m)坑沿成排堆砌红铜锭、银白锡铅料与带细微云雷残纹的废弃陶范片；MG(3–6m)巨大长方形冒烟地坑内，实心泥芯(内范)预置铭文块，百工推拢内壁精雕云雷饕餮纹的分块外范；BG 四周数十铸工齐倾炽亮坩埚，8 条泥槽赤金铜液同步奔涌入浇口！",
+            gaze: "小工匠跑位指引目光落入长方形地坑中心，8 条赤金铜液汇聚浇口激起冲天金烟牵引视线自然抬升。",
+            camera: "左转 Yaw 10°/s 平稳前推至坑沿，Pitch 柔俯至 -12° 探瞰坑底，01:46 随冲天金烟柔缓抬镜。",
+            light: "2000K 奔涌铜液瞬间成为巨坑中心超级光源，照亮四周百张汗湿面孔与升腾金雾。",
+            script: "百工整齐号子（“起——落——”），铜液入范“嘶啦”蒸汽爆响，商代陶埙与厚重编铙长鸣渐入。",
+            blocking: "精准修正原稿“泥模作为内范并雕琢纹饰”硬伤，严格呈现外范内壁雕纹 + 泥芯内范铭文块考古实景。",
+            dof: { pitch: "-4° 探坑微俯", yaw: "10°/s 缓转", wind: "39°C 炽热拂面", vibe: "50% / 22Hz 地坑沉闷轰鸣" },
+            ue: "01:45 借冲天金烟异步激活高精度 SK_HoumuwuDing_Hero 含纹饰扫光与透明铭文层。"
+          }
+        ]
+      },
+      {
+        id: "S06", act: "A2", actName: "第二幕 · 以器载情（殷墟后母戊鼎）", title: "巨鼎升华·纹饰扫光与铭文思念",
+        start: 108, dur: 27, tc: "01:48 – 02:15", tension: 72, haptic: 12, flag: "",
+        img: "./storyboards/S06_houmuwu_ding_glow.png",
+        imgNote: "【考古真值校准】严格按国博 image10 真品：腹部正中大片素面留白 + 四周边框饕餮夔龙纹 + 双虎噬人首耳 + 腹内仅见三字“后母戊”",
+        beats: [
+          {
+            bid: "B11", tc: "01:48 – 02:02", dur: 14, name: "巨鼎赤金升华与五大纹饰烛光扫亮",
+            comp: "【纪念碑微仰构图】FG(1.4m)细碎飘升金色火星；MG(2.4m)褪范后的长方四足后母戊鼎(初铸赤金，禁绿锈)庄严托举矗立；BG(>6m)作坊百工在 2.5s 内按阴翳律压暗至 Lum 10% 保留远炉微光。",
+            gaze: "一道 3000K 暖金窄光依次扫过鼎耳云雷纹与鱼纹 → 耳外侧双虎食人首纹 → 腹部与柱足饕餮纹，牢牢牵引观众细赏。",
+            camera: "距离 2.4m 随巨鼎柔仰 Pitch +5°，配极缓水平弧游(Yaw ≤ 7°/s)展现 832.84 千克重器厚重体量。",
+            light: "谷崎润一郎阴翳高光：受控暗部衰减 + 窄条暖金轮廓高光，凸显深浮雕体积厚度。",
+            script: "【左下典雅双行字幕 01:50】后母戊鼎 · 商 / 重 832.84 千克 · 已知中国古代最重的青铜器",
+            blocking: "巨鼎升起稳重如山岳，无轻浮加速漂浮感。",
+            dof: { pitch: "+5° 庄严微仰", yaw: "≤ 7°/s", wind: "热风缓停", vibe: "15%→0% 归于宁静" },
+            ue: "开启纹饰局部 Emissive 扫描遮罩通道。"
+          },
+          {
+            bid: "B12", tc: "02:02 – 02:15", dur: 13, name: "腹壁半透明透视“后母戊”铭文与母爱礼制",
+            comp: "【聚焦微距透视】MG(2.1m)鼎腹前壁渐转为温润半透明琥珀金属质，清晰透见内壁苍劲古朴的“后母戊”三字金文，暖烛柔光自笔画深处亮起。",
+            gaze: "全器光影收束至腹内铭文中心三字，情感温度直抵内心。",
+            camera: "极缓前推 0.3m 至 2.1m 后绝对静止凝视，将情绪完全交还给旁白与音乐。",
+            light: "铭文温润内发光(2600K)与冷寂青铜暗影构成克制深沉的怀念氛围。",
+            script: "【旁白 02:01–02:15】后母戊鼎的纹饰带有庄严神秘的色彩。“后母戊”铭文，表明它曾被献给一位史上留名的女性“妇妌”——她是商代中兴之主武丁的王后。后母戊鼎是妇妌的儿子为祭祀她所铸造的，这是刻在青铜上的思念，是商代礼制与亲情的集中体现。",
+            blocking: "纯器物情感凝视，宏大铜鸣收敛为单一清越石磬余音。",
+            dof: { pitch: "+5° 稳态", yaw: "0°", wind: "关闭", vibe: "0% 铭文静谧驻留" },
+            ue: "预备宗庙深景礼台与加载窗 W2 浓密青烟粒子。"
+          }
+        ]
+      },
+      {
+        id: "S07", act: "A3", actName: "第三幕 · 巾帼威仪（妇好与青铜鸮尊）", title: "重屏青烟溯时空·宗庙转誓师台",
+        start: 135, dur: 20, tc: "02:15 – 02:35", tension: 60, haptic: 22, flag: "W2",
+        img: "./storyboards/S07_fuhao_oath_altar.png",
+        imgNote: "【考古真值校准】继承 image11 夯土方祭台，彻底纠偏为殷墟 1004 兽面铜胄(插双细雉羽) + 朱黑皮甲妇好 + 玄鸟战旗(零楷书)",
+        beats: [
+          {
+            bid: "B13", tc: "02:15 – 02:23", dur: 8, name: "巨鼎归宗庙与【加载窗 W2：青烟重屏擦镜】",
+            comp: "【巫鸿重屏框景】后母戊鼎稳落殷墟宗庙深景高台；FG(0.6–1.2m)一缕苍白浓密祭祀青烟与半垂商代兽纹朱黑丝帛礼幔顺镜前斜掠而过，天然切分两重历史时空！",
+            gaze: "礼幔掀开缝隙间透出苍茫黄昏天光，自然引导目光越过宗庙走向旷野。",
+            camera: "平稳后退并右移绕出廊柱(1.0 m/s, Yaw 8°/s)，Pitch 由 +5° 柔回 0°。",
+            light: "由宗庙 2600K 暖烛平滑渡入 5200K 苍茫肃杀的黄昏荒野高天光。",
+            script: "音效转调：室内烛火幽寂骤转为旷野凛冽寒风与军旗猎猎声。",
+            blocking: "以青烟和礼幔作为物理时空阀门，彻底堵死“祭妇妌的鼎挨着活妇好”的断代硬伤。",
+            dof: { pitch: "+5°→0° 回正", yaw: "8°/s 右移", wind: "3.0 m/s 旷野凉风", vibe: "15% 空间温差感" },
+            ue: "【W2 加载窗 02:18–02:21 (3.0s)】借青烟与礼幔遮挡卸载殷墟铸坊，全量拉起誓师台与千军 VAT 阵。"
+          },
+          {
+            bid: "B14", tc: "02:23 – 02:35", dur: 12, name: "武丁盛世誓师台：妇好戎装登场",
+            comp: "【高台阶梯纵深构图】FG(1.6m)玄黑商鸟战旗边角；MG(3.2m, +4°)夯土誓师台左立两名执玉圭占卜师，居中偏右女战神妇好披商式青铜札甲、戴羽饰铜胄、手握大铜钺目如利刃；BG(10–80m)千军甲士戈矛如林、鸦雀无声。",
+            gaze: "台下千军齐整凝望高台与妇好耀眼赤金铜钺构成绝对中心视觉聚焦。",
+            camera: "自礼幔后缓步贴近高台前沿至 3.2m，微仰 +4° 塑造英雄仰望感。",
+            light: "5200K 灰蓝高天光 + 低角度 3400K 落日斜阳拉出甲片与戈尖冷峻金属高光。",
+            script: "【新增断代桥接旁白 02:24–02:28】而在武丁中兴的另一座祭坛上，王后妇好，正率师出征。",
+            blocking: "妇好身姿如青铜雕塑般挺拔克制，大战前的静谧压迫感拉满。",
+            dof: { pitch: "+4° 微仰", yaw: "0°", wind: "3.0 m/s 旷野风", vibe: "20% / 25Hz 军阵微沉顿挫" },
+            ue: "稳态运行千军 VAT 方阵与猎猎战旗风场。"
+          }
+        ]
+      },
+      {
+        id: "S08", act: "A3", actName: "第三幕 · 巾帼威仪（妇好与青铜鸮尊）", title: "妇好誓师与鸱鸮冲入黄沙",
+        start: 155, dur: 20, tc: "02:35 – 02:55", tension: 86, haptic: 66, flag: "W3",
+        img: "./storyboards/S08_owl_sandstorm_flight.png",
+        imgNote: "【考古真值校准】严格锁死妇好兽面铜胄与朱黑皮甲连续性 · 台下千军齐举纯正商代横刃青铜长戈 · 鸱鸮冲入黄沙(W3)",
+        beats: [
+          {
+            bid: "B15", tc: "02:35 – 02:46", dur: 11, name: "妇好宏亮誓师与鸱鸮破云盘旋",
+            comp: "【英雄仰拍构图】MG(2.6m, +6°)妇好迈步跨至台沿、高举铜钺指向苍穹；天顶(+16°)威猛巨大的鸱鸮(修正原稿“猫头秃”)破云俯冲低空盘旋；下方千支赤金青铜戈矛轰然刺向天空！",
+            gaze: "双耳空间音频定位穿云枭鸣自左后划向右前，瞬间拉动观众抬头仰看神鸟盘旋。",
+            camera: "缓贴高台前沿至 2.6m，Pitch 仰至 +6° 锁住妇好、神鸟与千戈三层张力。",
+            light: "落日逆光为鸱鸮张开的宽阔羽翼镶上耀眼金边。",
+            script: "【妇好 02:36–02:43】鸮乃威猛善战之鸟，勇悍无匹！正是上天预示我军，此次攻敌，必大获全胜！\n【众将士 02:44–02:46】胜！胜！胜！",
+            blocking: "妇好声音清越洪亮如金石相击，台下千军整齐跺地举矛形成物理气浪。",
+            dof: { pitch: "+6° 英雄仰拍", yaw: "≤ 6°/s", wind: "3.5 m/s 劲风", vibe: "65% / 26Hz 万军呐喊重震" },
+            ue: "同步触发千军举矛动作切换与穿云枭鸣全景声 Object 轨。"
+          },
+          {
+            bid: "B16", tc: "02:46 – 02:55", dur: 9, name: "今敏追飞升空与【加载窗 W3：黄沙风暴】",
+            comp: "【斜向追飞大动势】FG 右侧(1.4m 安全距)鸱鸮振翅贴镜掠空拉升；脚下誓师军阵迅速远缩；正前高空漫天金色战场黄沙风暴巨墙翻涌压境，02:51 神鸟疾冲没入黄沙，沙幕柔和漫屏！",
+            gaze: "紧锁右前振翅领航的鸱鸮飞翼矢量，直入漫天金沙毫无方向迷失。",
+            camera: "柔和升空加速度 ≤ 0.20G，Pitch 柔抬至 +10°、Yaw 缓跟 10°/s 兼顾爽感与零晕吐。",
+            light: "体积光穿透翻涌金色黄沙粒子，温暖而充满沙场威压。",
+            script: "无旁白，狂风呼啸、羽翼拍风声与远方隐约金戈交鸣声推向战事高潮。",
+            blocking: "神鸟振翅一瞬间无缝带走观众离开誓师台。",
+            dof: { pitch: "+10° 柔和升空", yaw: "10°/s", wind: "5.0 m/s 升空畅快风", vibe: "35% / 55Hz 沙粒高频微颤" },
+            ue: "【W3 加载窗 02:51–02:55 (3.5s)】借金色黄沙全屏遮挡卸载誓师台，加载战后硝烟凯旋高坡。"
+          }
+        ]
+      },
+      {
+        id: "S09", act: "A3", actName: "第三幕 · 巾帼威仪（妇好与青铜鸮尊）", title: "浴尘凯旋·玉凤柔情与青铜鸮尊",
+        start: 175, dur: 35, tc: "02:55 – 03:30", tension: 74, haptic: 20, flag: "",
+        img: "./storyboards/S09_fuhao_jade_owl_zun.png",
+        imgNote: "【考古真值校准】按殷墟 1004 兽面铜胄(插双细雉羽，去罗马鸡冠) + 商代朱黑皮甲 + 单刃妇好大铜钺 + 1:1 真品玉凤(image12)与青铜鸮尊(image13)",
+        beats: [
+          {
+            bid: "B17", tc: "02:55 – 03:11", dur: 16, name: "浴尘单膝拄戈凯旋与零黑屏赏玉凤",
+            comp: "【残阳战地柔情构图】黄沙向两侧散开，MG 左(2.2m)甲胄染尘的妇好单膝拄大铜钺稳立阵前(彻底废除原稿晕倒躺地！)；两忠勇亲兵跪呈已拭净的温润黄褐玉凤；BG(>8m)欢呼举旗商军虚焦剪影。",
+            gaze: "亲兵高捧的透光玉凤成为残阳暗影中最温暖的视觉重心，镜头随妇好接玉顺滑前推至 1.4m 浅景深赏玉(3.5s，零黑屏！)。",
+            camera: "柔和沉降回正 Pitch 0° 落定高坡，03:06 缓推赏玉凤流畅羽尾与阴刻线。",
+            light: "残阳暖侧光穿透黄褐玉凤边缘呈现温润次表面散射(SSS)质感。",
+            script: "【亲兵 02:58–03:06】王后！大胜了！咱们大胜了！方才您冲锋陷阵时，这枚玉凤坠落沙场——卑职知道这是大王所赠、您从不离身之物，拼死给您寻回来了！｜【字幕 03:08】玉凤 · 商",
+            blocking: "妇好眼底凌厉战意刹那化为珍重柔情，贴心轻抚玉凤(李安式刚柔瞬变)。",
+            dof: { pitch: "0° 回正", yaw: "0°", wind: "微风渐歇", vibe: "0% 静谧温情" },
+            ue: "启用浅景深虚化背景替代原稿黑屏切玉凤。"
+          },
+          {
+            bid: "B18", tc: "03:11 – 03:30", dur: 19, name: "今敏神鸟化尊：“妇好”青铜鸮尊赏析",
+            comp: "【虚实叠化雕塑构图】妇好收玉起身、昂然伸平左臂；天际鸱鸮盘旋停栖其护臂，赤金铜芒自羽冠倾泻凝为“妇好”青铜鸮尊；周围战坡 2s 优雅压暗至 Lum 12%(非死黑)，鸮尊在 1.6m 处缓转展示。",
+            gaze: "微光顺序勾勒高耸歧冠 → 圆睁“臣”字目、小耳钩喙 → 收拢双翅与两足一尾三点稳定支撑 → 器壁透亮“妇好”二字铭文。",
+            camera: "略退 0.4m 迎鸟停臂，随即 1.6m 平稳赏尊(Yaw ≤ 6°/s)。",
+            light: "2800K 雕塑轮廓侧光凸显初铸赤金鸮尊厚重金属体量与羽鳞纹饰。",
+            script: "【左下字幕 03:20】“妇好”青铜鸮尊 · 商（音乐由清冽玉磬转为庄严编钟铜鸣）。",
+            blocking: "活体猛禽羽翼在 1.5s 内无缝转为精雕青铜羽纹，视觉魔力拉满。",
+            dof: { pitch: "0° 平稳", yaw: "≤ 6°/s", wind: "03:15 振翅轻风", vibe: "20% 落臂轻顿→0% 赏尊" },
+            ue: "后台预加载第四幕商代黄昏农田轻量化资产。"
+          }
+        ]
+      },
+      {
+        id: "S10", act: "A4", actName: "第四幕 · 文脉星火（协田与甲骨灼兆）", title: "神鸟掠麦田·众人协田化金文",
+        start: 210, dur: 22, tc: "03:30 – 03:52", tension: 50, haptic: 15, flag: "",
+        img: "./storyboards/S10_shang_farmland_glyphs.png",
+        imgNote: "宗白华散点滑翔 2.8m 微俯 · 3800K 暖金麦田 · 木耒协耕化古金“众协田”聚火光",
+        beats: [
+          {
+            bid: "B19", tc: "03:30 – 03:52", dur: 22, name: "鸮尊复羽掠麦浪，“众·协·田”金纹聚火",
+            comp: "【散点游观滑翔构图】鸮尊复化鸱鸮飞越暗影边界直入 3800K 暖金麦田；FG/MG(2.8m 微俯 -10°)商代农人着粗麻短褐挥木耒协力翻土；BG 鸱鸮远入晚霞；人群与田垄腾起金色光粒分别勾勒甲骨文“众”“协”“田”，盘旋聚成镜头中心一团炽热跳跃金火！",
+            gaze: "鸱鸮领航入田 → 三处升腾金字由左、右、下向屏幕正中 1.8m 汇聚为火团。",
+            camera: "眼高 2.8m 轻盈滑翔(1.4 m/s)后麦田悬停，随三字合聚自然前凑至火光。",
+            light: "3800K 低角度温暖夕阳拉出修长麦田与农人剪影，象征战后盛世安宁。",
+            script: "【旁白 03:33–03:48】战火平息，田野重归安宁。先民们协力耕作的身影，连同对丰年与天命的敬畏，化作了刻在甲骨上的古老文字——华夏文明的记忆，自此有了清晰的印记。",
+            blocking: "精准呼应国博典藏“王大令众人曰协田”刻辞牛骨，理顺“战后安居→生发文字”因果逻辑。",
+            dof: { pitch: "-2° 轻盈滑翔", yaw: "≤ 8°/s", wind: "2.5 m/s 温煦晚风", vibe: "10% 晚风轻感" },
+            ue: "麦田外围渐入暮色，衔接夜祭篝火零黑屏过渡。"
+          }
+        ]
+      },
+      {
+        id: "S11", act: "A4", actName: "第四幕 · 文脉星火（协田与甲骨灼兆）", title: "夜火灼兆：“卜”声裂甲与双祭台",
+        start: 232, dur: 33, tc: "03:52 – 04:25", tension: 68, haptic: 45, flag: "",
+        img: "./storyboards/S11_oracle_bone_cracking.png",
+        imgNote: "【考古真值校准】黑夜宽扁扇形真实牛肩胛骨(image15)背面枣核形钻凿凹槽灼兆 + 左方三级夯土方祭台(image17，去晚代砖廊)",
+        beats: [
+          {
+            bid: "B20", tc: "03:52 – 04:13", dur: 21, name: "夜祭篝火、贞人选骨与“剥（卜）！”声裂兆",
+            comp: "【零黑屏昼夜无缝转译】三字金火膨胀为熊熊夜祭篝火，深蓝星空无缝覆盖；FG(1.1–1.4m)竹木祭案摆洁净白牛肩胛骨，“众协田”金芒印落其上；MG(1.7m)素麻礼袍贞人亮出背面枣核形钻凿凹槽，取赤红楚焞抵槽爆出火星绽开焦痕“卜”形兆纹；BG 暗影中农人抱拳担忧祈祷。",
+            gaze: "2100K 灼红焦木尖端精准引导全部注意力聚焦于白骨钻凿凹槽中心一点。",
+            camera: "低眼高 1.30m 贴近祭案绝对稳态凝视，营造强烈仪式屏息感。",
+            light: "2100K 跳跃篝火强明暗对照(8:1)，白牛骨质感莹润，裂纹焦痕灼灼发亮。",
+            script: "【塔可夫斯基时间压力微高潮】04:07 全场声景骤静 0.5s → 04:08 极清脆骨骼灼裂爆响“剥（卜）——！”｜【浮空微标】兆",
+            blocking: "贞人手势稳重精准，远景农人神情虔诚焦虑，层次丰富。",
+            dof: { pitch: "0° 稳态", yaw: "0°", wind: "04:08 灼骨一瞬微热气", vibe: "45% / 60Hz 0.3s 极脆单点震" },
+            ue: "极脆裂甲音效与 60Hz 短震硬锁帧对齐(±10ms)。"
+          },
+          {
+            bid: "B21", tc: "04:13 – 04:25", dur: 12, name: "后拉揭示双祭祀台与兆纹升空",
+            comp: "【夜间双焦点对称构图】后拉显露右侧卜台与左侧更宏伟的王室主祭台(台下跪满族群，台上两位高阶占卜师借火把议兆)，两台间执事小跑呈递刚灼好的甲骨。",
+            gaze: "04:22 牛骨金色“兆”纹脱骨升空，笔直飞向两座祭台正中夜空，牵引观众自然仰望。",
+            camera: "匀速平稳后拉并微升(1.1 m/s，眼高升至 2.4m)，Pitch 柔仰至 +3°。",
+            light: "2300K 密集火把暖橙与深邃星空冷蓝对冲，凸显礼制森严。",
+            script: "音效：远景浑厚古朴的商代祭祀鼓乐低吟渐升，化作星辰召唤序曲。",
+            blocking: "展示商代“卜官灼兆 → 执事传骨 → 祭台议兆”完整礼仪生态。",
+            dof: { pitch: "+3° 缓仰", yaw: "0°", wind: "关闭", vibe: "15% 远景祭鼓低吟" },
+            ue: "预热第五幕青铜星脉粒子与加载窗 W4，准备硬件密格预启。"
+          }
+        ]
+      },
+      {
+        id: "S12", act: "A5", actName: "第五幕 · 繁星交辉（星图·四羊方尊·三星堆）", title: "兆纹化星河·中华青铜多元星图",
+        start: 265, dur: 17, tc: "04:25 – 04:42", tension: 70, haptic: 18, flag: "W4",
+        img: "./storyboards/S12_bronze_constellation.png",
+        imgNote: "淘汰廉价科幻隧道！兆纹铺展为古金石青华夏青铜星图 · 脚下黄河长江繁星交辉 · W4 + 密格预启",
+        beats: [
+          {
+            bid: "B22", tc: "04:25 – 04:42", dur: 17, name: "兆纹裂变铺展青铜星脉与【W4 加载 + 密格预启】",
+            comp: "【废除网游风时空隧道！】兆纹金线在双祭台夜空裂变铺展为浩瀚典雅的古金×石青“华夏青铜苍穹星图”；脚下幽暗大地微光勾勒黄河与长江水系，中原、洞庭湖与西南巴蜀群星次第亮起交辉！",
+            gaze: "顺金脉自中原主星向南奔流直指长江洞庭湖亮星，自然停泊。",
+            camera: "随兆纹丝滑攀升(1.5 m/s, Pitch +8°→+4°)，04:39 起极柔 S 曲线提前减速归零停泊。",
+            light: "宋画青金石青与古金星辉(严禁刺眼蓝紫赛博霓虹)，典雅浩瀚。",
+            script: "【旁白 04:27–04:40(挪移原稿 L54 金句至此，声画 100% 咬合)】商周时期，青铜文明并非单一中心，而是在广袤的中华大地上交相辉映，如同繁星，共同点亮了华夏的天空。",
+            blocking: "以宏大地理尺度视觉实证“满天星斗、多元一体”。",
+            dof: { pitch: "+8°→0° 平稳停泊", yaw: "≤ 8°/s", wind: "关闭", vibe: "15% 巡航→0% 停稳" },
+            ue: "【W4 加载窗 04:28–04:32 (4.0s)】卸载第四幕全场景加载四羊方尊 Nanite 高模；【04:39 硬件脉冲】触发 300 座物理密格静音升起！"
+          }
+        ]
+      },
+      {
+        id: "S13", act: "A5", actName: "第五幕 · 繁星交辉（星图·四羊方尊·三星堆）", title: "【物理密格实触】四羊青铜方尊与三层花",
+        start: 282, dur: 50, tc: "04:42 – 05:32", tension: 78, haptic: 0, flag: "密格",
+        img: "./storyboards/S13_siyang_fangzun_haptic.png",
+        imgNote: "【考古真值校准】1:1 复刻国博真品四羊方尊(image18)：高 58.6cm 喇叭长颈蕉叶纹 + 肩部高浮雕蟠龙 + 四角四羊(正面三羊首) · 50s 物理密格锁止",
+        beats: [
+          {
+            bid: "B23", tc: "04:42 – 04:50", dur: 8, name: "密格 1:1 静音到位与诺曼示能引导",
+            comp: "【绝对水平臂长交互构图】FG(0.55–0.65m 真实伸手可触区)暖金星尘 3s 凝实为赤金四羊青铜方尊，同步与密格升起的仿制实体 1:1 毫米锁合；BG 幽深洞庭青金星尘零干扰。",
+            gaze: "左羊首与方肩边缘亮起极其克制的浅金色呼吸光环 + 雅致轻触示意(诺曼 Signifier)，老人小孩零门槛伸手即触。",
+            camera: "全程 0 m/s、Pitch/Yaw/Roll 全部绝对锁死 0°，严防手眼错位或磕手。",
+            light: "温润顶侧柔光将羊角、蕉叶与兽面高浮雕立体感雕刻得触手可及。",
+            script: "【左下字幕 04:46】四羊青铜方尊 · 商（古琴清澈泛音引入，留出 3 秒初触惊叹期）。",
+            blocking: "观众双手真实抚摸冰凉凹凸青铜浮雕，达成全片最高辨识度“视触通感”。",
+            dof: { pitch: "0° 绝对锁死", yaw: "0° 绝对锁死", wind: "关闭", vibe: "0% 防磕手绝对静止" },
+            ue: "【04:45 硬件锁定】校验密格机械限位到位信号。"
+          },
+          {
+            bid: "B24", tc: "04:50 – 05:24", dur: 34, name: "指尖视触通感：逐层扫光解析“三层花”",
+            comp: "【主器静稳 + 分层光带透视】保持实体对齐不动，以环绕扫描光带 + 局部微距浮光逐层点亮：04:55 底层细密云雷地纹 → 05:01 中层蕉叶/兽面/盘龙/凤鸟/四羊高浮雕 → 05:08 顶层羊首龙身鳞纹与阴线细刻。",
+            gaze: "三层色温渐变光带精准对应旁白逐句引导指尖与视线同步摩挲。",
+            camera: "持续绝对静止 0 移速，不以画面乱转破坏实触沉浸。",
+            light: "底层淡金铺底 / 中层暖赤金高亮 / 顶层微距暖白轮廓细闪。",
+            script: "【旁白 04:48–05:23】让我们通过指端的触感，细细体会四羊青铜方尊。它是现存商代最大的方形青铜尊……使用了“三层花”装饰手法……出土此尊的洞庭湖地区在商代为三苗活动区……成为早期黄河与长江流域文化交融的见证，是华夏文明多元一体的最早体现之一。｜【字幕】“三层花”装饰手法",
+            blocking: "观众在听讲同时指尖同步摸到真实浮雕纹路高低叠压层次。",
+            dof: { pitch: "0° 绝对锁死", yaw: "0° 绝对锁死", wind: "关闭", vibe: "0% 绝对静止" },
+            ue: "按时间码驱动三层花独立 Shader 遮罩通道逐层淡入淡出。"
+          },
+          {
+            bid: "B25", tc: "05:24 – 05:32", dur: 8, name: "安全收回双手与密格静音下沉",
+            comp: "呼吸光环柔和收缩变为退手示意；05:27 确认红外安全后实体方尊匀速隐没桌下，虚拟方尊同步化作一缕璀璨流金砂河飘向画面左前西南方。",
+            gaze: "金砂向西南星脉缓缓飘流，牵引视线自然过渡至古蜀三星堆。",
+            camera: "保持 0° 静止直至实体密格完全闭锁，确保万无一失。",
+            light: "柔和余辉随金砂向左舒缓拉出空间拖尾。",
+            script: "【服务提示音 05:24–05:27(亲切舒缓女声)】现在请大家轻轻收回双手，扶稳坐好，和四羊方尊说再见。",
+            blocking: "严格落实诺曼防错律：强制留足 3.0s 红外防夹手缓冲期。",
+            dof: { pitch: "0° 稳态", yaw: "0°", wind: "关闭", vibe: "0%" },
+            ue: "【05:27 红外检测脉冲】双手离开安全区→密格静音下沉闭合。"
+          }
+        ]
+      },
+      {
+        id: "S14", act: "A5", actName: "第五幕 · 繁星交辉（星图·四羊方尊·三星堆）", title: "古蜀奇光·三星堆纵目与商周转折",
+        start: 332, dur: 38, tc: "05:32 – 06:10", tension: 74, haptic: 20, flag: "",
+        img: "./storyboards/S14_sanxingdui_mask_serene.png",
+        imgNote: "【考古真值校准】严格按真品 138×66cm (2.1:1 扁阔比例) 重绘三星堆青铜纵目面具 · 巨大桃尖双耳、额中方孔、阔口微笑 · 2.2m 柔光防惊吓",
+        beats: [
+          {
+            bid: "B26", tc: "05:32 – 05:54", dur: 22, name: "古蜀神光静谧揭幕三星堆青铜纵目面具",
+            comp: "【康德式神圣崇高构图·彻底零惊吓】跟随流金西滑步入 4800K 翠青×2800K 古金丝绸薄雾；两道温润神光在安全距 2.2m 处优雅显影柱状纵目，停留 3s 后以极其平缓 S 曲线退至 4.5m 完整呈现宽大饕餮双耳与神秘威严神情！",
+            gaze: "由双目温润神光自然向外晕染开整个宏伟面具轮廓，震撼崇高而绝不吓哭儿童。",
+            camera: "西滑 Yaw ≤ 10°/s；退镜严格控制在 4.5s、线速 ≤ 0.65 m/s，彻底砍掉原稿“扑面急停+急速拉远”。",
+            light: "4800K 古蜀幽翠体积雾 × 2800K 暖金青铜逆光，初铸青金色金属质感无绿锈。",
+            script: "【旁白 05:33–05:54】在遥远的西南蜀地，与中原风格迥异的青铜器，正以它奇特的语言，讲述着另一种文化的神秘故事。这尊青铜纵目面具，来自四川广汉三星堆遗址……为中华文明多元一体格局提供了关键考古实证。｜【字幕 05:45】三星堆青铜纵目面具 · 商",
+            blocking: "面具如远古宗庙神明悬立薄雾中，静谧而极富敬畏感。",
+            dof: { pitch: "+4° 崇高柔仰", yaw: "≤ 10°/s", wind: "关闭", vibe: "0% 绝对零惊吓" },
+            ue: "稳态运行古蜀体积雾与柔光遮罩动画。"
+          },
+          {
+            bid: "B27", tc: "05:54 – 06:10", dur: 16, name: "【L70 专项优化定稿】星云转拂晓与商周天命更迭",
+            comp: "纵目神光缓缓散融为深邃清冽的 7500K 拂晓靛蓝星云，晨风吹拂云雾向正前方翻涌聚拢，空间氛围由古蜀神秘沉转入大战前夕的铁血凛冽。",
+            gaze: "流云聚向前方地平线微光处，远方低音周军战鼓心跳声(60→85 BPM)步步催紧情绪。",
+            camera: "柔和匀速前滑入云雾，Pitch 回正 0°。",
+            light: "4800K 翠青沉郁渐转为 7500K 拂晓深靛蓝冷光。",
+            script: "【优化定稿过渡旁白 05:54–06:10(方案 A · 彻底替换原稿三国穿帮词)】然而，青铜铸就的盛世并非永恒。商朝晚期，礼崩于奢、民怨沸腾；渭水之畔的新兴周邦，正蓄势以待天命更迭。公元前 1046 年甲子清晨，一场改写华夏文明走向的决战，已在牧野拉开了帷幕。",
+            blocking: "以“公元前 1046 甲子清晨”精准锁死下一幕牧野天文黎明时间锚点。",
+            dof: { pitch: "0° 回正", yaw: "0°", wind: "微弱晨风预热", vibe: "20% / 20Hz 远方战鼓心跳" },
+            ue: "预热 W5 拂晓浓雾帘幕与牧野战场完整资产。"
+          }
+        ]
+      },
+      {
+        id: "S15", act: "A6", actName: "第六幕 · 天命更迭（牧野誓师与战车）", title: "破晓岁星当空与周武王《牧誓》",
+        start: 370, dur: 24, tc: "06:10 – 06:34", tension: 88, haptic: 65, flag: "W5",
+        img: "./storyboards/S15_muye_dawn_jupiter.png",
+        imgNote: "【考古真值校准】对照 image19 层岩悬崖 · 4200K 东方微曦 + 7500K 靛蓝岁星 · 周武王执白旄黄钺 · 谷底西周多辐四马战车阵(W5)",
+        beats: [
+          {
+            bid: "B28", tc: "06:10 – 06:22", dur: 12, name: "【W5 破云加载】牧野悬崖拂晓与岁星当空吉兆",
+            comp: "【拂晓双色温史诗大空间】破云落位史官“利”第一人称观礼舆：FG(1.6m)悬崖风草与玄黑旗角；MG 右前(3.0m)披甲戴皮弁的周武王仰望苍穹；BG 东方透出 4200K 鱼肚白微曦，头顶 7500K 靛蓝天穹流云散开，璀璨金色岁星(木星)高悬光芒万丈！",
+            gaze: "头顶清越星辉弦乐 + 座椅温柔后仰 +8° + 武王仰头视线，自然带领观众仰观岁星。",
+            camera: "破云柔和降落悬崖边缘，Pitch 柔仰至 +8°。",
+            light: "绝非黑夜或正午！精准捕捉拂晓昧爽时分东西冷暖交替天文光影。",
+            script: "【利(观众主视角近声 06:18–06:22)】大王您看！岁星当空，吉兆显现了！",
+            blocking: "由“旁观浮舆”平滑完成向“史官利第一人称”的最终代入升华。",
+            dof: { pitch: "+8° 温柔仰星", yaw: "0°", wind: "3.5 m/s 拂晓清风", vibe: "15% 晨风轻感" },
+            ue: "【W5 加载窗 06:10–06:14 (3.5s)】借拂晓浓雾卸载第五幕星图，全量加载牧野战场与双军阵。"
+          },
+          {
+            bid: "B29", tc: "06:22 – 06:34", dur: 12, name: "周武王登高台《牧誓》与万军怒吼",
+            comp: "【高台英雄仰拍】左侧高耸夯土高台上，周武王迎着东方第一缕晨光面容刚毅决绝，左手执白旄、右手高举青铜黄钺；脚下谷底晨雾沸腾，杀气直冲霄汉！",
+            gaze: "平稳左摇 11°/s 聚焦左侧夯土高台，晨光强侧影如雕塑般切出武王眉宇。",
+            camera: "Yaw 11°/s 平稳左摇，Pitch 调至 +4° 仰视高台。",
+            light: "4200K 低角度破晓朝阳强塑形侧光，锐化周武王青铜甲片与黄钺寒光。",
+            script: "【旁白 06:22–06:28】商朝晚期，社会矛盾激化。周部族首领武王率领众多盟友，同数倍于己的商朝大军，在此一决生死。\n【周武王 06:29–06:32】称尔戈，比尔干，立尔矛，予其誓！\n【周军万众 06:32–06:34】杀！杀！杀！",
+            blocking: "武王振臂一挥白旄，谷底万军兵器齐击盾牌发出山崩海啸之怒吼。",
+            dof: { pitch: "+4° 仰视高台", yaw: "11°/s 左摇", wind: "3.5 m/s 朔风", vibe: "40→55→75% / 24Hz 三声重锤" },
+            ue: "06:33 触发谷底浓雾被战风彻底吹散体积动画。"
+          }
+        ]
+      },
+      {
+        id: "S16", act: "A6", actName: "第六幕 · 天命更迭（牧野誓师与战车）", title: "【体感峰值】周车破阵牧野冲锋",
+        start: 394, dur: 41, tc: "06:34 – 07:15", tension: 98, haptic: 72, flag: "",
+        img: "./storyboards/S16_chariot_charge_cockpit.png",
+        imgNote: "【考古真值校准】彻底替换罗马弧形桶！西周长方形漆木青铜直木轼防晕稳框 + 独辕四马 + 两侧纤细多辐条周车冲锋",
+        beats: [
+          {
+            bid: "B30", tc: "06:34 – 07:15", dur: 41, name: "晨雾散尽、落位先锋战车与带稳框巅峰冲阵",
+            comp: "【VR 座舱防晕稳框构图】06:34 晨雾散尽露出牧野万军战车方阵，视点柔俯落入先锋战车：FG 下缘 18%(0.65–1.1m)恒定锁死深色漆木青铜车轼横栏与紧握缰绳双臂(Cockpit Grounding)；MG(2.5–8m)四匹披甲战马扬蹄疾驰、两侧周车红黑军旗洪流并驾齐驱；BG(15–60m)直冲远方商军大阵，流矢只从左右安全外缘擦过(禁直刺眼部！)；07:10 破晓朝阳逆光烟尘如泼墨吞没战场优雅归寂！",
+            gaze: "四马奔腾正前灭点与两翼并驰战车形成极致高速前冲沉浸感，零晕动迷失。",
+            camera: "06:36–06:40 抛物线柔俯落车(Pitch -9°→0°, ≤0.22G)；全程单向直线前冲为主，闪避错车 Roll ≤ ±3.5°、Yaw ≤ 10°/s。",
+            light: "朝阳强烈逆光穿透金色漫天尘浪，形成电影级史诗光柱与剪影。",
+            script: "全声景高潮无旁白：低频战鼓(心率同频)、急促马蹄、青铜车轴轧地、将士嘶吼 → 07:12 潮水般化为一声绵长深远的西周大编钟余音。",
+            blocking: "用侧掠光影流与低频震动叠加迎面强风打造全片最酣畅体感，严守 75% 全年龄安全线。",
+            dof: { pitch: "-7° 俯入→0°", yaw: "Yaw≤10°/Roll±3°", wind: "5.5 m/s 迎面强风", vibe: "55–70% / 22–32Hz 马蹄鼓点震" },
+            ue: "07:10–07:15 借逆光金尘异步卸载千军万马，无缝保留终章礼台与利簋高模。"
+          }
+        ]
+      },
+      {
+        id: "S17", act: "A7", actName: "第七幕 · 时间密码（“利”青铜簋终章）", title: "战尘凝礼台·利簋铭文化星",
+        start: 435, dur: 45, tc: "07:15 – 08:00", tension: 65, haptic: 10, flag: "",
+        img: "./storyboards/S17_ligui_stars_finale.png",
+        imgNote: "【考古真值校准】彻底清除清式青瓦院落！西周早期夯土矮墙、粗壮原木柱与茅茨重檐宗庙直通岁星星空 · 1:1 真品赤金利簋(image20)",
+        beats: [
+          {
+            bid: "B31", tc: "07:15 – 07:36", dur: 21, name: "战尘凝礼台：利簋现世与方座兽纹微距",
+            comp: "【首尾闭环阴翳案台构图】逆光金尘沉淀静谧，化为顶通拂晓星穹、中有暖烛的宗庙暗影空间(Lum 14%)；MG(1.50m)初铸赤金西周“利”青铜簋稳落厚重木案，暖金扫光依次浮雕般勾勒方座兽面与簋腹双耳饕餮兽纹。",
+            gaze: "方座兽面微光渐次上移至敞开的簋口，承接即将升空的金文星流。",
+            camera: "距离 1.50m 极缓敬畏弧绕(Yaw ≤ 5°/s)，随后微升 12cm 轻探簋腹内底。",
+            light: "2800K 暖烛光雕琢初铸赤金金属温润厚度，上方无缝衔接 7500K 拂晓深靛蓝星空。",
+            script: "【左下字幕 07:19】“利”青铜簋 · 西周\n【利(画外音 07:22–07:36，沧桑温柔)】我叫利。甲子日清晨，岁星当空，我随王出征。在牧野战斗了短短一天，“小邦周”就击败了“大邑商”。我用王赐下的吉金，铸了这只簋……",
+            blocking: "画外音不现人物形象，将时空厚重感完全凝聚于眼前这尊穿越三千年的吉金器物。",
+            dof: { pitch: "0° 静谧", yaw: "≤ 5°/s", wind: "关闭", vibe: "10% 宏大编钟微鸣" },
+            ue: "注：概念图周边回廊瓦作在 UE5 终版资产中需替换为西周早瓦/夯土重檐木构以严守考古断代。"
+          },
+          {
+            bid: "B32", tc: "07:36 – 08:00", dur: 24, name: "32 字铭文化星、岁星定锚与小津式 3 秒余味",
+            comp: "【天地贯通垂直史诗构图】07:36 利簋腹底 32 字金文(“武征商，唯甲子朝，岁鼎…”)化作璀璨金色星火流自簋口扶摇直上，汇入头顶深靛蓝苍穹漫天繁星，顶中那颗耀眼金色“岁星(木星)”与下方案台利簋天地定锚！",
+            gaze: "升腾的金文星流与座椅温柔后仰 +6° 同步牵引全厅仰望岁星。",
+            camera: "舒缓昂首 Pitch 0°→+8°，07:56 柔和回正，末尾留白 3 秒静止凝望。",
+            light: "深靛蓝星穹 + 温润古金星粒辉映，克制而无比庄严。",
+            script: "【利(画外音 07:36–07:43)】……它会比我们所有人存世更长久，默默地讲着先祖和我们的故事——世世代代，永志不忘。\n【旁白 07:43–07:57】利簋内部的铭文，为夏商周断代工程确立了重要时间坐标。通过推算天文现象，结合文献与考古实证，最终确定公元前 1046 年为武王克商之年。这是刻在青铜上的时间密码，是华夏文明的关键锚点。\n【07:57–08:00 小津式 3 秒静默余味】苍穹淡现典雅金印：公元前 1046 年 · 礼乐之基，青铜之魂。",
+            blocking: "所有鼓声喧嚣归寂，唯留单一编钟泛音自然衰减 3 秒，余味无穷。",
+            dof: { pitch: "+6° 柔和仰星→0°", yaw: "0°", wind: "关闭", vibe: "10%→0% 彻底归寂" },
+            ue: "平滑输出下一朝代衔接帧或安全离场提示信号。"
+          }
+        ]
+      }
+    ];
+
+    const STREAM_WINDOWS = [
+      { label: "W1 脱范蒸汽", start: 43, dur: 3.5 },
+      { label: "W2 青烟重屏", start: 138, dur: 3.5 },
+      { label: "W3 战场黄沙", start: 171, dur: 4.0 },
+      { label: "W4 星脉/密格", start: 268, dur: 4.5 },
+      { label: "W5 牧野破云", start: 370, dur: 4.0 }
+    ];
+
+    const HAPTIC_EVENTS = [
+      { label: "热风+脱范三震", start: 26, dur: 18, color: "#9E3020" },
+      { label: "地坑合浇热浪", start: 96, dur: 14, color: "#9E3020" },
+      { label: "鸱鸮升空+黄沙", start: 162, dur: 15, color: "#A87C33" },
+      { label: "“卜”裂脆震", start: 246, dur: 8, color: "#574836" },
+      { label: "四羊方尊物理密格 1:1 实触 (绝对零晃)", start: 282, dur: 50, color: "#246751" },
+      { label: "牧野战车巅峰冲锋 (带车轼稳框)", start: 394, dur: 41, color: "#1B4D6B" }
+    ];
+
+    const VO_OPTIONS = [
+      {
+        id: "A",
+        label: "方案 A（推荐定稿 · 国博庄重史诗版）",
+        text: "然而，青铜铸就的盛世并非永恒。商朝晚期，礼崩于奢、民怨沸腾；渭水之畔的新兴周邦，正蓄势以待天命更迭。公元前 1046 年甲子清晨，一场改写华夏文明走向的决战，已在牧野拉开了帷幕。",
+        meta: "84 字 ｜ 配音时长约 22–24 秒 ｜ 导演评注：最贴合国家博物馆权威口径，精准打通“商末失德 → 周邦兴起 → 公元前 1046 甲子清晨”，与下段武王仰望岁星及终章利簋铭文构成严密闭环。"
+      },
+      {
+        id: "B",
+        label: "方案 B（礼乐意象诗意版）",
+        text: "繁星璀璨之时，旧日的鼎火却已渐微。大邑商奢靡失德，天命悄然移向西方渭水。公元前 1046 年的甲子黎明，一场决定天下归属与礼乐新生的决战，即将在牧野打响。",
+        meta: "73 字 ｜ 配音时长约 19–21 秒 ｜ 导演评注：以“繁星 → 鼎火渐微”无缝咬合第五幕“中华青铜繁星”视觉母题，文学感染力最强。"
+      },
+      {
+        id: "C",
+        label: "方案 C（极简留白快节奏版）",
+        text: "当青铜文明遍及四方，大邑商的统治却走到了尽头。公元前 1046 年甲子清晨，渭水之畔的周人兵临牧野——一场改写中国历史的决战，一触即发。",
+        meta: "63 字 ｜ 配音时长约 16–18 秒 ｜ 导演评注：若后期剪辑需进一步压缩时长，此版节奏最凌厉干脆，直推战鼓入场。"
+      }
+    ];
+
+    const TOTAL_DUR = 480;
+    let currentAct = "ALL";
+    let currentShotIdx = 0;
+    let currentBeatIdx = 0;
+    let showGuideOverlay = false;
+
+    function getActColor(actId) {
+      const f = ACTS.find(a => a.id === actId);
+      return f ? f.color : "#4A3C2C";
+    }
+
+    function renderActFilters() {
+      const row = document.getElementById("actFilterRow");
+      row.innerHTML = ACTS.map(a => `
+        <button class="act-chip ${a.id === currentAct ? "active" : ""}" data-act="${a.id}">${a.name}</button>
+      `).join("");
+      row.querySelectorAll(".act-chip").forEach(btn => {
+        btn.addEventListener("click", () => {
+          currentAct = btn.dataset.act;
+          if (currentAct !== "ALL") {
+            const first = SHOTS.findIndex(s => s.act === currentAct);
+            if (first >= 0) { currentShotIdx = first; currentBeatIdx = 0; }
+          }
+          renderAllStoryboard();
+        });
+      });
+    }
+
+    function renderTimelineBars() {
+      const bar = document.getElementById("shotBar");
+      bar.innerHTML = SHOTS.map((s, i) => {
+        const w = (s.dur / TOTAL_DUR) * 100;
+        const dimmed = currentAct !== "ALL" && s.act !== currentAct;
+        return `
+          <div class="shot-seg ${i === currentShotIdx ? "selected" : ""} ${dimmed ? "dimmed" : ""}"
+               style="width:${w}%; background:${getActColor(s.act)};" data-idx="${i}"
+               title="${s.id} ${s.title} (${s.tc})">
+            ${s.flag ? '<span class="shot-seg-flag"></span>' : ""}
+            <span class="shot-seg-id">${s.id}</span>
+            <span class="shot-seg-sec">${s.dur}s</span>
+          </div>
+        `;
+      }).join("");
+      bar.querySelectorAll(".shot-seg").forEach(el => {
+        el.addEventListener("click", () => {
+          currentShotIdx = Number(el.dataset.idx);
+          currentBeatIdx = 0;
+          renderAllStoryboard();
+        });
+      });
+
+      document.getElementById("streamLane").innerHTML = STREAM_WINDOWS.map(w => `
+        <div class="aux-block" style="left:${(w.start/TOTAL_DUR)*100}%; width:${Math.max((w.dur/TOTAL_DUR)*100, 3.8)}%; background:#9E3020;" title="${w.label}">${w.label}</div>
+      `).join("");
+
+      document.getElementById("hapticLane").innerHTML = HAPTIC_EVENTS.map(h => `
+        <div class="aux-block" style="left:${(h.start/TOTAL_DUR)*100}%; width:${(h.dur/TOTAL_DUR)*100}%; background:${h.color};" title="${h.label}">${h.label}</div>
+      `).join("");
+    }
+
+    function renderPacingChart() {
+      const svg = document.getElementById("pacingSvg");
+      const W = 1200, H = 126, padT = 12, padB = 20, plotH = H - padT - padB;
+      const toX = s => (s / TOTAL_DUR) * W;
+      const toY = v => padT + plotH - (v / 100) * plotH;
+      const tPts = SHOTS.map(s => `${toX(s.start + s.dur/2).toFixed(1)},${toY(s.tension).toFixed(1)}`).join(" ");
+      const hPts = SHOTS.map(s => `${toX(s.start + s.dur/2).toFixed(1)},${toY(s.haptic).toFixed(1)}`).join(" ");
+      const sel = SHOTS[currentShotIdx];
+
+      let grid = "";
+      [25, 50, 75, 100].forEach(v => {
+        const y = toY(v).toFixed(1);
+        const st = v === 75 ? 'stroke="#246751" stroke-dasharray="5,4" stroke-width="1.3"' : 'stroke="#C7B99E" stroke-width="0.8"';
+        grid += `<line x1="0" y1="${y}" x2="${W}" y2="${y}" ${st} /><text x="4" y="${y - 3}" fill="#7D6D58" font-family="SF Mono, Menlo, monospace" font-size="10">${v}%</text>`;
+      });
+
+      const dots = SHOTS.map((s, i) => {
+        const cx = toX(s.start + s.dur/2).toFixed(1);
+        const r = i === currentShotIdx ? 5 : 2.8;
+        return `<circle cx="${cx}" cy="${toY(s.tension).toFixed(1)}" r="${r}" fill="#9E3020" /><circle cx="${cx}" cy="${toY(s.haptic).toFixed(1)}" r="${r}" fill="#1B4D6B" />`;
+      }).join("");
+
+      svg.innerHTML = `
+        <rect x="${toX(sel.start).toFixed(1)}" y="${padT}" width="${toX(sel.dur).toFixed(1)}" height="${plotH}" fill="#D8CCB4" opacity="0.65" />
+        ${grid}
+        <polyline fill="none" stroke="#9E3020" stroke-width="2.2" points="${tPts}" />
+        <polyline fill="none" stroke="#1B4D6B" stroke-width="2" points="${hPts}" />
+        ${dots}
+      `;
+    }
+
+    function renderShotList() {
+      const list = document.getElementById("shotList");
+      const items = SHOTS.map((s, idx) => ({ s, idx })).filter(x => currentAct === "ALL" || x.s.act === currentAct);
+      list.innerHTML = items.map(({ s, idx }) => `
+        <div class="shot-row ${idx === currentShotIdx ? "selected" : ""}" data-idx="${idx}">
+          <img class="shot-thumb" src="${s.img}" alt="${s.id}" loading="lazy" />
+          <div>
+            <div><span class="shot-row-code">${s.id}</span><span class="shot-row-title">${s.title}</span></div>
+            <span class="shot-row-act">${s.tc} · ${s.beats.length}拍${s.flag ? " · [" + s.flag + "]" : ""}</span>
+          </div>
+        </div>
+      `).join("");
+      list.querySelectorAll(".shot-row").forEach(r => {
+        r.addEventListener("click", () => {
+          currentShotIdx = Number(r.dataset.idx);
+          currentBeatIdx = 0;
+          renderAllStoryboard();
+        });
+      });
+    }
+
+    function openLightbox(src, caption) {
+      document.getElementById("lightboxImg").src = src;
+      document.getElementById("lightboxCaption").textContent = caption;
+      document.getElementById("lightbox").classList.add("open");
+    }
+
+    function renderShotDetail() {
+      const s = SHOTS[currentShotIdx];
+      if (currentBeatIdx >= s.beats.length) currentBeatIdx = 0;
+      const b = s.beats[currentBeatIdx];
+      const box = document.getElementById("shotDetail");
+
+      const SHOT_AUDIO_MAP = {
+        S01: "V01", S02: "V02", S03: "sfx-3", S04: "V03", S05: "V08",
+        S06: "V10", S07: "V11", S08: "V12", S09: "V14", S10: "V15",
+        S11: "sfx-6", S12: "V16", S13: "V17", S14: "V19", S15: "V21",
+        S16: "V24", S17: "V25"
+      };
+      const audioTarget = SHOT_AUDIO_MAP[s.id] || "vo";
+      const actMusicIdx = Math.max(0, Math.min(6, Number(String(s.act || "1").replace(/\D/g, "")) - 1));
+
+      box.innerHTML = `
+        <div class="detail-head">
+          <div>
+            <div class="detail-title">${s.id} · ${s.title}</div>
+            <div class="detail-meta tabular-nums">${s.actName} ｜ 镜段 ${s.tc}（${s.dur} 秒 · 共 ${s.beats.length} 个精细拍子）</div>
+          </div>
+          <div class="detail-nav">
+            <a class="nav-btn" href="./夏商西周_声音配音与配乐工作台.html#${audioTarget}" style="text-decoration:none;border-color:#9E3020;color:#9E3020;">本镜配音 →</a>
+            <a class="nav-btn" href="./夏商西周_声音配音与配乐工作台.html#music-${actMusicIdx}" style="text-decoration:none;border-color:#1B4D6B;color:#1B4D6B;">本幕配乐 →</a>
+            <button class="nav-btn ${showGuideOverlay ? "active" : ""}" id="toggleGuideBtn">三分法/VR安全框</button>
+            <button class="nav-btn" id="prevShotBtn">← 上一镜</button>
+            <button class="nav-btn" id="nextShotBtn">下一镜 →</button>
+          </div>
+        </div>
+
+        <div class="frame-stage" id="frameStage" title="点击全屏灯箱查看高清分镜原图">
+          <img src="${s.img}" alt="${s.id} ${s.title} 构图分镜关键帧" />
+          <svg class="frame-overlay-svg ${showGuideOverlay ? "visible" : ""}" viewBox="0 0 1600 900" preserveAspectRatio="none">
+            <line x1="533.3" y1="0" x2="533.3" y2="900" stroke="#F2ECE1" stroke-opacity="0.45" stroke-width="1.5" stroke-dasharray="8,6" />
+            <line x1="1066.6" y1="0" x2="1066.6" y2="900" stroke="#F2ECE1" stroke-opacity="0.45" stroke-width="1.5" stroke-dasharray="8,6" />
+            <line x1="0" y1="300" x2="1600" y2="300" stroke="#F2ECE1" stroke-opacity="0.45" stroke-width="1.5" stroke-dasharray="8,6" />
+            <line x1="0" y1="600" x2="1600" y2="600" stroke="#F2ECE1" stroke-opacity="0.45" stroke-width="1.5" stroke-dasharray="8,6" />
+            <rect x="240" y="135" width="1120" height="630" fill="none" stroke="#9E3020" stroke-width="2.5" stroke-dasharray="14,8" />
+            <text x="256" y="166" fill="#F2ECE1" font-family="SF Mono, Menlo, monospace" font-size="22">VR COMFORT CONE (±35° HORIZONTAL / SAFE SUBTITLE ZONE)</text>
+            <circle cx="800" cy="450" r="14" fill="none" stroke="#F2ECE1" stroke-opacity="0.7" stroke-width="2" />
+            <line x1="774" y1="450" x2="826" y2="450" stroke="#F2ECE1" stroke-opacity="0.7" stroke-width="1.5" />
+            <line x1="800" y1="424" x2="800" y2="476" stroke="#F2ECE1" stroke-opacity="0.7" stroke-width="1.5" />
+          </svg>
+        </div>
+        <div class="frame-caption-bar">
+          <span>KEYFRAME · ${s.imgNote}</span>
+          <span>点击画幅放大全屏审图</span>
+        </div>
+
+        <div class="beat-bar" id="beatBar">
+          ${s.beats.map((bt, bi) => `
+            <button class="beat-pill ${bi === currentBeatIdx ? "active" : ""}" data-bi="${bi}">
+              ${bt.bid} ｜ ${bt.tc} (${bt.dur}s) · ${bt.name}
+            </button>
+          `).join("")}
+        </div>
+
+        <div class="spec-grid">
+          <div class="spec-block full">
+            <div class="spec-key gold">COMPOSITION · 前景 / 中景 / 远景三层空间构图</div>
+            <div class="spec-val">${b.comp}</div>
+          </div>
+          <div class="spec-block">
+            <div class="spec-key red">VR GAZE CUE · 360° 视线引导锚点</div>
+            <div class="spec-val">${b.gaze}</div>
+          </div>
+          <div class="spec-block">
+            <div class="spec-key">CAMERA RIG · 精确机位与运动防晕曲线</div>
+            <div class="spec-val">${b.camera}</div>
+          </div>
+          <div class="spec-block">
+            <div class="spec-key gold">LIGHTING &amp; PBR · 色温(K)光比与考古材质</div>
+            <div class="spec-val">${b.light}</div>
+          </div>
+          <div class="spec-block">
+            <div class="spec-key">BLOCKING · 表演阻塞与微动作细节</div>
+            <div class="spec-val">${b.blocking}</div>
+          </div>
+          <div class="spec-block full">
+            <div class="spec-key red">SCRIPT &amp; AUDIO · 精准逐句旁白 / 对白 / 字幕入出点</div>
+            <div class="voice-quote">${b.script.replace(/\n/g, "<br/>")}</div>
+          </div>
+          <div class="spec-block full">
+            <div class="spec-key">4D MOTION SEAT · 多自由度座椅与特效脉冲（${b.bid}）</div>
+            <div class="dof-strip tabular-nums">
+              <div><div class="dof-cell-label">纵倾 Pitch</div><div class="dof-cell-val">${b.dof.pitch}</div></div>
+              <div><div class="dof-cell-label">偏航 Yaw / Roll</div><div class="dof-cell-val">${b.dof.yaw}</div></div>
+              <div><div class="dof-cell-label">热风 / 吹风特效</div><div class="dof-cell-val">${b.dof.wind}</div></div>
+              <div><div class="dof-cell-label">座椅震动频率与力度</div><div class="dof-cell-val">${b.dof.vibe}</div></div>
+            </div>
+          </div>
+          <div class="spec-block full">
+            <div class="spec-key green">UE5 SEQUENCER &amp; HARDWARE · 资产流式加载与中控触发</div>
+            <div class="spec-val">${b.ue}</div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById("frameStage").addEventListener("click", () => {
+        openLightbox(s.img, `${s.id} · ${s.title} (${s.tc}) — ${s.imgNote}`);
+      });
+      document.getElementById("toggleGuideBtn").addEventListener("click", () => {
+        showGuideOverlay = !showGuideOverlay;
+        renderShotDetail();
+      });
+      document.getElementById("prevShotBtn").addEventListener("click", () => {
+        currentShotIdx = (currentShotIdx - 1 + SHOTS.length) % SHOTS.length;
+        currentBeatIdx = 0;
+        renderAllStoryboard();
+      });
+      document.getElementById("nextShotBtn").addEventListener("click", () => {
+        currentShotIdx = (currentShotIdx + 1) % SHOTS.length;
+        currentBeatIdx = 0;
+        renderAllStoryboard();
+      });
+      box.querySelectorAll(".beat-pill").forEach(pill => {
+        pill.addEventListener("click", () => {
+          currentBeatIdx = Number(pill.dataset.bi);
+          renderShotDetail();
+        });
+      });
+    }
+
+    function renderContactSheet() {
+      const grid = document.getElementById("contactGrid");
+      grid.innerHTML = SHOTS.map((s, idx) => `
+        <div class="contact-card" data-idx="${idx}">
+          <div class="contact-img-wrap">
+            <img src="${s.img}" alt="${s.id} ${s.title}" loading="lazy" />
+          </div>
+          <div class="contact-meta tabular-nums">${s.id} ｜ ${s.tc}（${s.dur}s · ${s.beats.map(x => x.bid).join("/")}）${s.flag ? " · [" + s.flag + "]" : ""}</div>
+          <div class="contact-title">${s.title}</div>
+          <div class="contact-desc">${s.imgNote}</div>
+        </div>
+      `).join("");
+      grid.querySelectorAll(".contact-card").forEach(card => {
+        card.addEventListener("click", () => {
+          currentShotIdx = Number(card.dataset.idx);
+          currentBeatIdx = 0;
+          currentAct = "ALL";
+          switchTab("storyboard");
+          renderAllStoryboard();
+          window.scrollTo({ top: 320, behavior: "smooth" });
+        });
+      });
+    }
+
+    function renderBeatsFullTable() {
+      const tbody = document.getElementById("beatsTableBody");
+      const rows = [];
+      SHOTS.forEach(s => {
+        s.beats.forEach(b => {
+          rows.push(`
+            <tr>
+              <td><strong>${b.bid}</strong><br/><span style="color:#7D6D58;font-size:11px;">${s.id}</span></td>
+              <td>${b.tc}<br/><span style="color:#7D6D58;font-size:11px;">${b.dur}s</span></td>
+              <td><strong>${b.name}</strong><br/><span style="color:#7D6D58;font-size:11.5px;">${s.actName}</span></td>
+              <td>${b.comp}<br/><span style="color:#9E3020;font-size:12px;">视线：${b.gaze}</span></td>
+              <td>${b.camera}<br/><span style="color:#A87C33;font-size:12px;">光影：${b.light}</span></td>
+              <td>Pitch ${b.dof.pitch}｜${b.dof.yaw}<br/>风：${b.dof.wind}｜震：${b.dof.vibe}</td>
+              <td>${b.ue}</td>
+            </tr>
+          `);
+        });
+      });
+      tbody.innerHTML = rows.join("");
+    }
+
+    function renderAllStoryboard() {
+      renderActFilters();
+      renderTimelineBars();
+      renderPacingChart();
+      renderShotList();
+      renderShotDetail();
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === tabId));
+      document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.id === "panel-" + tabId));
+    }
+
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => switchTab(btn.dataset.tab));
+    });
+
+    let currentVo = "A";
+    function renderVoSwitcher() {
+      const bar = document.getElementById("voSwitchBar");
+      const card = document.getElementById("voCard");
+      bar.innerHTML = VO_OPTIONS.map(v => `
+        <button class="vo-btn ${v.id === currentVo ? "active" : ""}" data-vo="${v.id}">${v.label}</button>
+      `).join("");
+      const active = VO_OPTIONS.find(v => v.id === currentVo);
+      card.innerHTML = `<div class="vo-text">“${active.text}”</div><div class="vo-meta tabular-nums">${active.meta}</div>`;
+      bar.querySelectorAll(".vo-btn").forEach(btn => {
+        btn.addEventListener("click", () => { currentVo = btn.dataset.vo; renderVoSwitcher(); });
+      });
+    }
+
+    document.getElementById("lightboxClose").addEventListener("click", () => {
+      document.getElementById("lightbox").classList.remove("open");
+    });
+    document.getElementById("lightbox").addEventListener("click", e => {
+      if (e.target.id === "lightbox") document.getElementById("lightbox").classList.remove("open");
+    });
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") document.getElementById("lightbox").classList.remove("open");
+    });
+
+    function applyShotHash() {
+      const h = decodeURIComponent(window.location.hash || "").replace(/^#/, "").toUpperCase();
+      if (!/^S\d{2}$/.test(h)) return;
+      const idx = SHOTS.findIndex(s => s.id === h);
+      if (idx >= 0) {
+        currentShotIdx = idx;
+        currentBeatIdx = 0;
+        currentAct = "ALL";
+        switchTab("storyboard");
+        renderAllStoryboard();
+        window.scrollTo({ top: 320, behavior: "smooth" });
+      }
+    }
+
+    renderAllStoryboard();
+    renderContactSheet();
+    renderBeatsFullTable();
+    renderVoSwitcher();
+    applyShotHash();
+    window.addEventListener("hashchange", applyShotHash);
+  </script>
+</body>
+</html>
